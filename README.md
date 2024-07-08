@@ -30,6 +30,8 @@ Nice to haves (likely to be implemented)
 
 - Progress tracking for quests
 - Customizable Themes (will probably be implemented as another reward for quests and such)
+- Streaks
+- A calendar that shows how much you have done on each day
 
 Nice to haves (not very likely to be implemented)
 
