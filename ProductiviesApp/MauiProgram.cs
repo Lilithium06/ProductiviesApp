@@ -51,7 +51,7 @@ namespace ProductiviesApp
 
         private static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
         {
-            _ = mauiAppBuilder.Services.AddTransient<Item>();
+            _ = mauiAppBuilder.Services.AddTransient<PodoromoUnitModel>();
 
             return mauiAppBuilder;
         }
