@@ -5,35 +5,55 @@ namespace ProductiviesApp.ViewModels;
 
 public class MainPageViewModel : ViewModelBase
 {
-    private Item? _item;
-    public Item? Item
+    public MainPageViewModel()
     {
-        get => _item;
-        set => SetProperty(ref _item, value);
-    }
-
-    public ICommand IncrementCommand { get; private set; }
-    public ICommand ShowMessageCommand { get; private set; }
-
-
-    public MainPageViewModel(Item item)
-    {
-        Item = item;
-
-        IncrementCommand = new Command(() =>
+        PodoromoUnitModel = new PodoromoUnitModel()
         {
-            if (Item != null)
-            {
-                Item.Count++;
-            }
-        });
-
-        ShowMessageCommand = new Command(async () =>
+            Timer = new DateTime(1, 1 , 1, 0, 0, 12)
+        };
+        _timer = Application.Current.Dispatcher.CreateTimer();
+        
+        StartTimer = new Command(async () =>
         {
-            if (Application.Current?.MainPage != null)
-            {
-                await Application.Current.MainPage.DisplayAlert("Count", Item?.Count.ToString(), "OK");
-            }
+            _timer.Tick += RemoveOneSecond;
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Start();
         });
     }
+    
+    private PodoromoUnitModel? _podoromoUnitModel;
+    public PodoromoUnitModel? PodoromoUnitModel
+    {
+        get => _podoromoUnitModel;
+        set => SetProperty(ref _podoromoUnitModel, value);
+    }
+
+    private ICommand _startTimer;
+    
+    public ICommand StartTimer
+    {
+        get => _startTimer;
+        set => SetProperty(ref _startTimer, value);
+    }
+
+    private IDispatcherTimer _timer;
+
+    private void RemoveOneSecond(object? o, EventArgs e)
+    {
+        if (PodoromoUnitModel.Timer.Minute == 0 && PodoromoUnitModel.Timer.Second == 0)
+        {
+            _timer.Stop();
+            PodoromoUnitModel.CompletedParts += 1;
+
+            if (PodoromoUnitModel.Parts == PodoromoUnitModel.CompletedParts)
+            {
+                //Do stuff that gives extra exp
+            }
+
+            return;
+        }
+        
+        PodoromoUnitModel.Timer = PodoromoUnitModel.Timer.AddSeconds(-1);
+    }
+
 }
