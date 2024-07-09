@@ -1,6 +1,6 @@
 ﻿using ProductiviesApp.ViewModels;
 
-namespace ProductiviesApp;
+namespace ProductiviesApp.Views;
 
 public partial class MainPage : ContentPage
 {

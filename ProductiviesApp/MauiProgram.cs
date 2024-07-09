@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ProductiviesApp.Models;
 using ProductiviesApp.ViewModels;
+using ProductiviesApp.Views;
 
 namespace ProductiviesApp
 {

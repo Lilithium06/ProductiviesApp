@@ -3,13 +3,28 @@
     x:Class="ProductiviesApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:ProductiviesApp"
+    xmlns:views="clr-namespace:ProductiviesApp.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="ProductiviesApp">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    
+    <TabBar>
+        <ShellContent
+            Title="Quests"
+            Shell.NavBarIsVisible="False"
+            ContentTemplate="{DataTemplate views:QuestListPage}"
+            Route="QuestListPage"/>
+        
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate views:MainPage}"
+            Shell.NavBarIsVisible="False"
+            Route="MainPage" />
+        
+        <ShellContent
+            Title="Skills"
+            ContentTemplate="{DataTemplate views:SkillsListPage}"
+            Shell.NavBarIsVisible="False"
+            Route="SkillsListPage"/>
+    </TabBar>
 
 </Shell>
