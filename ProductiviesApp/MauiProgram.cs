@@ -39,6 +39,7 @@ namespace ProductiviesApp
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
             _ = mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
+            _ = mauiAppBuilder.Services.AddTransient<QuestListViewModel>();
 
             return mauiAppBuilder;
         }
@@ -46,6 +47,7 @@ namespace ProductiviesApp
         private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
             _ = mauiAppBuilder.Services.AddTransient<MainPage>();
+            _ = mauiAppBuilder.Services.AddTransient<QuestListPage>();
 
             return mauiAppBuilder;
         }

@@ -2,9 +2,32 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProductiviesApp.Views.QuestListPage">
+             xmlns:viewModels="clr-namespace:ProductiviesApp.ViewModels"
+             xmlns:models="clr-namespace:ProductiviesApp.Models"
+             x:Class="ProductiviesApp.Views.QuestListPage"
+             x:DataType="viewModels:QuestListViewModel">
+    <ContentPage.BindingContext>
+        <viewModels:QuestListViewModel></viewModels:QuestListViewModel>
+    </ContentPage.BindingContext>
     
-    <ContentPage.Content>
+    <Grid>
+        <!-- Background image I will fiddle with later
+        <Image Aspect="AspectFill" Source="background_wood_texture.jpg"/>
+        -->
         
-    </ContentPage.Content>
+        <ListView RowHeight="100" ItemsSource="{Binding AllSkills}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Skill">
+                    <ViewCell>
+                        <StackLayout >
+                            <Label Text="{Binding Name}" FontSize="Large"></Label>
+                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium"></Label>
+                            <Label Text="{Binding Exp}" FontSize="Medium"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </Grid>
 </ContentPage>
