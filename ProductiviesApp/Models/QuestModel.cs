@@ -1,6 +1,6 @@
 ﻿namespace ProductiviesApp.Models;
 
-public class Quest
+public class QuestModel
 {
     
 }

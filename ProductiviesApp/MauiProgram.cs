@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ProductiviesApp.DataAccess;
 using ProductiviesApp.Models;
 using ProductiviesApp.ViewModels;
 using ProductiviesApp.Views;
@@ -20,7 +21,8 @@ namespace ProductiviesApp
                 .RegisterAppServices()
                 .RegisterViews()
                 .RegisterViewModels()
-                .RegisterModels();
+                .RegisterModels()
+                .RegisterDataAccess();
 
 #if DEBUG
     		builder.Logging.AddDebug();
@@ -55,6 +57,13 @@ namespace ProductiviesApp
         private static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
         {
             _ = mauiAppBuilder.Services.AddTransient<PodoromoUnitModel>();
+
+            return mauiAppBuilder;
+        }
+
+        private static MauiAppBuilder RegisterDataAccess(this MauiAppBuilder mauiAppBuilder)
+        {
+            _ = mauiAppBuilder.Services.AddSingleton<SkillsDatabase>();
 
             return mauiAppBuilder;
         }

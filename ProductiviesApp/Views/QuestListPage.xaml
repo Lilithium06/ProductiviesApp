@@ -17,7 +17,7 @@
         
         <ListView RowHeight="100" ItemsSource="{Binding AllSkills}">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Skill">
+                <DataTemplate x:DataType="models:SkillModel">
                     <ViewCell>
                         <StackLayout >
                             <Label Text="{Binding Name}" FontSize="Large"></Label>

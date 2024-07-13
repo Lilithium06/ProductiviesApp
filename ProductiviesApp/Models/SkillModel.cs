@@ -2,14 +2,14 @@
 
 namespace ProductiviesApp.Models;
 
-public class Skill : ViewModelBase
+public class SkillModel : ViewModelBase
 {
-    public Skill(string name, int exp)
+    private Guid _id;
+
+    public Guid Id
     {
-        Name = name;
-        Exp = exp;
-        //Here I would calculate how much that level is because I am probably only going to save exp
-        Level = 1;
+        get => _id;
+        set => SetProperty(ref _id, value);
     }
     
     private string _name;
