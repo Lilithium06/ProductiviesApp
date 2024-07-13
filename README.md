@@ -26,9 +26,9 @@ Version 0.3 More Methods of gaining EXP
 - Podoromo Timer
 - Daily, Weekly and Monthly quests
 
-Version 0.4 Local Saving
+Version 0.4 Descriptions
 
-- Everything now saves locally on phone so you don't lose your Progress
+- Description Pages for Skills and Quests
 
 Version 0.5 First Design
 
