@@ -2,8 +2,35 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProductiviesApp.Views.SkillsListPage">
-    <ContentPage.Content>
+             xmlns:viewModels="clr-namespace:ProductiviesApp.ViewModels"
+             xmlns:models="clr-namespace:ProductiviesApp.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ProductiviesApp.Views.SkillsListPage"
+             x:DataType="viewModels:SkillListViewModel">
+    <ContentPage.BindingContext>
+        <viewModels:SkillListViewModel></viewModels:SkillListViewModel>
+    </ContentPage.BindingContext>
+    
+    <Grid>
+        <!-- Background image I will fiddle with later
+        <Image Aspect="AspectFill" Source="background_wood_texture.jpg"/>
+        -->
         
-    </ContentPage.Content>
+        <ListView RowHeight="100" ItemsSource="{Binding AllSkills}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:SkillModel">
+                    <ViewCell>
+                        <StackLayout >
+                            <Label Text="{Binding Name}" FontSize="Large"></Label>
+                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium"></Label>
+                            <Label Text="{Binding Exp}" FontSize="Medium"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button Command="{Binding GoToSkillCreationPageCommand}" Text="Add" VerticalOptions="End" HorizontalOptions="End"/>
+        
+    </Grid>
 </ContentPage>

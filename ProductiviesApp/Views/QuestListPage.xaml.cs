@@ -4,10 +4,8 @@ namespace ProductiviesApp.Views;
 
 public partial class QuestListPage : ContentPage
 {
-    public QuestListPage(QuestListViewModel viewModel)
+    public QuestListPage()
     {
         InitializeComponent();
-
-        BindingContext = viewModel;
     }
 }

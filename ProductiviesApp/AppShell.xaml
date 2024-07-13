@@ -7,6 +7,14 @@
     Shell.FlyoutBehavior="Disabled"
     Title="ProductiviesApp">
     
+    <Shell.Resources>
+        <Style TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#191970"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#C0C0C0"/>
+            <Setter Property="Shell.TabBarTitleColor" Value="#50C878"/>
+        </Style>
+    </Shell.Resources>
+    
     <TabBar>
         <ShellContent
             Title="Quests"
