@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductiviesApp", "ProductiviesApp\ProductiviesApp.csproj", "{028F2DBC-8835-4C8A-9EBD-DAB19CE192A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductiviesApp.DataAccess", "ProductiviesApp.DataAccess\ProductiviesApp.DataAccess.csproj", "{8BA5C097-14A2-4738-BDC7-5ACD40C16C26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{028F2DBC-8835-4C8A-9EBD-DAB19CE192A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028F2DBC-8835-4C8A-9EBD-DAB19CE192A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{028F2DBC-8835-4C8A-9EBD-DAB19CE192A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8BA5C097-14A2-4738-BDC7-5ACD40C16C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA5C097-14A2-4738-BDC7-5ACD40C16C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA5C097-14A2-4738-BDC7-5ACD40C16C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA5C097-14A2-4738-BDC7-5ACD40C16C26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

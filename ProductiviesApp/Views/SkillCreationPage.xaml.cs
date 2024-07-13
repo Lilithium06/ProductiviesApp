@@ -2,9 +2,9 @@
 
 namespace ProductiviesApp.Views;
 
-public partial class MainPage : ContentPage
+public partial class SkillCreationPage : ContentPage
 {
-    public MainPage(MainPageViewModel viewModel)
+    public SkillCreationPage(SkillCreationViewModel viewModel)
     {
         InitializeComponent();
 
