@@ -70,6 +70,7 @@ namespace ProductiviesApp
         private static MauiAppBuilder RegisterDataAccess(this MauiAppBuilder mauiAppBuilder)
         {
             _ = mauiAppBuilder.Services.AddSingleton<SkillsDatabase>();
+            _ = mauiAppBuilder.Services.AddSingleton<QuestDatabase>();
 
             return mauiAppBuilder;
         }

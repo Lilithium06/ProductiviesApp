@@ -2,5 +2,29 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProductiviesApp.Views.QuestListPage">
+             xmlns:viewModels="clr-namespace:ProductiviesApp.ViewModels"
+             xmlns:models="clr-namespace:ProductiviesApp.Models"
+             x:Class="ProductiviesApp.Views.QuestListPage"
+             x:DataType="viewModels:QuestListViewModel">
+    <ContentPage.BindingContext>
+        <viewModels:QuestListViewModel></viewModels:QuestListViewModel>
+    </ContentPage.BindingContext>
+    
+    <Grid>
+        <ListView RowHeight="100" ItemsSource="{Binding AllQuests}">
+            <ListView.ItemTemplate>
+                 <DataTemplate x:DataType="models:QuestModel">
+                     <ViewCell>
+                         <StackLayout>
+                             <Label Text="{Binding Name}" FontSize="Large"/>
+                             <Label Text="{Binding Details}" FontSize="Medium"/>
+                             <Label Text="{Binding NeededSkills.Count}" FontSize="Medium"/>
+                         </StackLayout>
+                     </ViewCell>
+                 </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button Command="{Binding GoToQuestCreationPageCommand}" Text="Add" VerticalOptions="End" HorizontalOptions="End"/>
+    </Grid>
 </ContentPage>

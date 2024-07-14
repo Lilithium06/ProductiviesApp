@@ -1,4 +1,4 @@
-﻿using ProductiviesApp.DataAccess.Models;
+﻿using ProductiviesApp.DataAccess.Entities;
 using ProductiviesApp.Models;
 
 namespace ProductiviesApp.Mappers;

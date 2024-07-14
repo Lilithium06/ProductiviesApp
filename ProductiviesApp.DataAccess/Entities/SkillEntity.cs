@@ -1,6 +1,7 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 
-namespace ProductiviesApp.DataAccess.Models;
+namespace ProductiviesApp.DataAccess.Entities;
 
 public class SkillEntity
 {
@@ -9,4 +10,7 @@ public class SkillEntity
     public string Name { get; set; }
     public int Level { get; set; }
     public int Exp { get; set; }
+    
+    [ManyToMany(typeof(QuestSkillEntity))]
+    public List<QuestEntity> NeededInQuests { get; set; }
 }
