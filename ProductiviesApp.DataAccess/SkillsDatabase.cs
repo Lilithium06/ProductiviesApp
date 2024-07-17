@@ -14,10 +14,6 @@ public class SkillsDatabase
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         
-        await Database.DropTableAsync<SkillEntity>();
-        await Database.DropTableAsync<QuestEntity>();
-        await Database.DropTableAsync<QuestSkillEntity>();
-        
         await Database.CreateTableAsync<SkillEntity>();
         await Database.CreateTableAsync<QuestEntity>();
         await Database.CreateTableAsync<QuestSkillEntity>();

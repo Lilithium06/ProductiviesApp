@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.DataAccess.Entities;
 using ProductiviesApp.Mappers;
 using ProductiviesApp.Models;
+using ProductiviesApp.Views;
 
 namespace ProductiviesApp.ViewModels;
 
@@ -17,22 +19,8 @@ public class QuestListViewModel : ViewModelBase
     {
         _questDatabase = questDatabase;
         InitializeAsync();
-        
-        GoToQuestCreationPageCommand = new Command(async () =>
-        {
-            var skills = await skillsDatabase.GetSkillsAsync();
-            
-            var quest = new QuestModel()
-            {
-                Id = Guid.Empty,
-                Name = "Something",
-                Details = "lol",
-                Difficulty = [Difficulty.Medium, Difficulty.Easy,],
-                NeededSkills = new ObservableCollection<SkillModel>(skills.Select(s => s.ToModel()))
-            };
-            
-            await _questDatabase.SaveQuestAsync(quest.ToEntity());
-        });
+
+        GoToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
     }
 
     private QuestDatabase _questDatabase;

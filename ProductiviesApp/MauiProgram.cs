@@ -41,8 +41,9 @@ namespace ProductiviesApp
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
             _ = mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
-            _ = mauiAppBuilder.Services.AddTransient<SkillListViewModel>();
             _ = mauiAppBuilder.Services.AddTransient<QuestListViewModel>();
+            _ = mauiAppBuilder.Services.AddTransient<QuestCreationViewModel>();
+            _ = mauiAppBuilder.Services.AddTransient<SkillListViewModel>();
             _ = mauiAppBuilder.Services.AddTransient<SkillCreationViewModel>();
 
             return mauiAppBuilder;
@@ -52,6 +53,7 @@ namespace ProductiviesApp
         {
             _ = mauiAppBuilder.Services.AddTransient<MainPage>();
             _ = mauiAppBuilder.Services.AddTransient<QuestListPage>();
+            _ = mauiAppBuilder.Services.AddTransient<QuestCreationPage>();
             _ = mauiAppBuilder.Services.AddTransient<SkillsListPage>();
             _ = mauiAppBuilder.Services.AddTransient<SkillCreationPage>();
 
