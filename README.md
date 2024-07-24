@@ -4,15 +4,10 @@ Welcome to the Productivies App! This app is designed to help you engage in pers
 
 # Features
 
-- Nothing rn lol
+- Basic Management of Skills and Quest
+- EXP and leveling system via quest completion
 
 # Roadmap
-
-Version 0.1 Basic Functionality
-
-- Creation of Basic skills
-- Creation of Basic quests
-- EXP and leveling system
 
 Version 0.2 Improvement of skills
 
@@ -48,3 +43,11 @@ Creating an avatar that you can equip with gear and weapons is a feature I would
 # Currently Not planned
 
 Online functionality, such as profile creation, leaderboards, and a friends list system, is not planned as it would require maintaining a server, which I do not have the time, nerves, or money for.
+
+# Version History
+
+Version 0.1 Basic Functionality
+
+- Creation of Basic skills
+- Creation of Basic quests
+- EXP and leveling system
