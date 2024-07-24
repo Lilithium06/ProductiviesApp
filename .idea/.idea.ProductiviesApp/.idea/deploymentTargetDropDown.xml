@@ -4,18 +4,18 @@
     <value>
       <entry key="ProductiviesApp">
         <State>
-          <targetSelectedWithDropDown>
+          <runningDeviceTargetSelectedWithDropDown>
             <Target>
-              <type value="QUICK_BOOT_TARGET" />
+              <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Lilithium\.android\avd\Pixel_6a_API_34.avd" />
+                  <type value="SERIAL_NUMBER" />
+                  <value value="90b043920588" />
                 </Key>
               </deviceKey>
             </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-09T16:21:46.417689700Z" />
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-18T05:15:18.974061600Z" />
         </State>
       </entry>
     </value>

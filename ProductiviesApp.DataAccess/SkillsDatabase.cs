@@ -24,6 +24,12 @@ public class SkillsDatabase
         await Init();
         return await Database.Table<SkillEntity>().ToListAsync();
     }
+    
+    public async Task<SkillEntity> GetSkillByIdAsync(Guid id)
+    {
+        await Init();
+        return await Database.Table<SkillEntity>().FirstOrDefaultAsync(s => s.Id == id);
+    }
 
     public async Task<int> SaveSkillAsync(SkillEntity skill)
     {
