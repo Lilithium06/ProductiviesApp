@@ -58,6 +58,6 @@ public class SkillCreationViewModel : ViewModelBase
 
         GoToLastPageCommand.Execute(null);
         
-        return await _skillsDatabase.SaveItemAsync(skillToSave.ToEntity());
+        return await _skillsDatabase.SaveSkillAsync(skillToSave.ToEntity());
     }
 }

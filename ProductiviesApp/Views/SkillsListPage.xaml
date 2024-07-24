@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:ProductiviesApp.ViewModels"
              xmlns:models="clr-namespace:ProductiviesApp.Models"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ProductiviesApp.Views.SkillsListPage"
              x:DataType="viewModels:SkillListViewModel">
     <ContentPage.BindingContext>
@@ -12,18 +11,14 @@
     </ContentPage.BindingContext>
     
     <Grid>
-        <!-- Background image I will fiddle with later
-        <Image Aspect="AspectFill" Source="background_wood_texture.jpg"/>
-        -->
-        
         <ListView RowHeight="100" ItemsSource="{Binding AllSkills}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:SkillModel">
                     <ViewCell>
                         <StackLayout >
-                            <Label Text="{Binding Name}" FontSize="Large"></Label>
-                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium"></Label>
-                            <Label Text="{Binding Exp}" FontSize="Medium"></Label>
+                            <Label Text="{Binding Name}" FontSize="Large"/>
+                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium"/>
+                            <Label Text="{Binding Exp}" FontSize="Medium"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

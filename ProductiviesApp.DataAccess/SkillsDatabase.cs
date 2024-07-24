@@ -1,4 +1,4 @@
-﻿using ProductiviesApp.DataAccess.Models;
+﻿using ProductiviesApp.DataAccess.Entities;
 using SQLite;
 
 namespace ProductiviesApp.DataAccess;
@@ -13,7 +13,10 @@ public class SkillsDatabase
             return;
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        var result = await Database.CreateTableAsync<SkillEntity>();
+        
+        await Database.CreateTableAsync<SkillEntity>();
+        await Database.CreateTableAsync<QuestEntity>();
+        await Database.CreateTableAsync<QuestSkillEntity>();
     }
 
     public async Task<List<SkillEntity>> GetSkillsAsync()
@@ -21,8 +24,14 @@ public class SkillsDatabase
         await Init();
         return await Database.Table<SkillEntity>().ToListAsync();
     }
+    
+    public async Task<SkillEntity> GetSkillByIdAsync(Guid id)
+    {
+        await Init();
+        return await Database.Table<SkillEntity>().FirstOrDefaultAsync(s => s.Id == id);
+    }
 
-    public async Task<int> SaveItemAsync(SkillEntity skill)
+    public async Task<int> SaveSkillAsync(SkillEntity skill)
     {
         await Init();
         if (skill.Id != Guid.Empty)

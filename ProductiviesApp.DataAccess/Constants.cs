@@ -1,4 +1,6 @@
 ﻿using Microsoft.Maui.Storage;
+using ProductiviesApp.DataAccess.Entities;
+using SQLite;
 
 namespace ProductiviesApp.DataAccess;
 
