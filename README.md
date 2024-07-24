@@ -12,14 +12,13 @@ Welcome to the Productivies App! This app is designed to help you engage in pers
 Version 0.2 Improvement of skills
 
 - Tags
-- Multple skills being leveled by one quest
 - Time Tracking
-- Multiple steps / Progress tracking
 
-Version 0.3 More Methods of gaining EXP
+Version 0.3 More Methods of gaining EXP and Quest improvement
 
 - Podoromo Timer
 - Daily, Weekly and Monthly quests
+- Multiple steps / Progress tracking
 
 Version 0.4 Descriptions
 
@@ -51,3 +50,4 @@ Version 0.1 Basic Functionality
 - Creation of Basic skills
 - Creation of Basic quests
 - EXP and leveling system
+- Multple skills being leveled by one quest
