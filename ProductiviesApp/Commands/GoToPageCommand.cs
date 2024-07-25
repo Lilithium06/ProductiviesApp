@@ -1,25 +1,11 @@
-﻿using System.Windows.Input;
+﻿namespace ProductiviesApp.Commands;
 
-namespace ProductiviesApp.Commands;
-
-public class GoToPageCommand : ICommand
+public class GoToPageCommand(string route) : BaseCommand
 {
-    private readonly string _route;
+    private readonly string _route = route;
 
-    public GoToPageCommand(string route)
-    {
-        _route = route;
-    }
-
-    public bool CanExecute(object? parameter)
-    {
-        return true;
-    }
-
-    public async void Execute(object? parameter)
+    public async void Execute()
     {
         await Shell.Current.GoToAsync(_route);
     }
-
-    public event EventHandler? CanExecuteChanged;
 }
