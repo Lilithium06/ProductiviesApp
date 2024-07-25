@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using ProductiviesApp.Commands;
+﻿using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
 using ProductiviesApp.Models;
 using ProductiviesApp.Views;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
 
@@ -13,18 +13,18 @@ public class SkillListViewModel : ViewModelBase
     public SkillListViewModel()
     {
     }
-    
+
     public SkillListViewModel(SkillsDatabase skillsDatabase)
     {
         _skillsDatabase = skillsDatabase;
         InitializeAsync();
-        
+
         GoToSkillCreationPageCommand = new GoToPageCommand($"{nameof(SkillCreationPage)}?param1={new SkillCreationViewModel()}");
         _allSkills = new ObservableCollection<SkillModel>();
     }
 
     private SkillsDatabase _skillsDatabase;
-    
+
     private ObservableCollection<SkillModel> _allSkills;
 
     public ObservableCollection<SkillModel> AllSkills
@@ -40,11 +40,11 @@ public class SkillListViewModel : ViewModelBase
         get => _goToSkillCreationPageCommand;
         set => SetProperty(ref _goToSkillCreationPageCommand, value);
     }
-    
+
     public async Task InitializeAsync()
     {
         var skills = await _skillsDatabase.GetSkillsAsync();
-        
+
         AllSkills = new ObservableCollection<SkillModel>(skills.Select(s => s.ToModel()));
     }
 }

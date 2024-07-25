@@ -1,6 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using ProductiviesApp.DataAccess.Entities;
+﻿using ProductiviesApp.DataAccess.Entities;
 using ProductiviesApp.Models;
+using System.Collections.ObjectModel;
 
 namespace ProductiviesApp.Mappers;
 
@@ -39,7 +39,7 @@ public static class QuestMapper
 
     private static string DifficultiesToString(this ObservableCollection<Difficulty> difficulties)
     {
-        return string.Join(' '  , difficulties.Select(d => d.ToString()));
+        return string.Join(' ', difficulties.Select(d => d.ToString()));
     }
 
     private static ObservableCollection<Difficulty> StringToDifficulties(this string difficultiesString)

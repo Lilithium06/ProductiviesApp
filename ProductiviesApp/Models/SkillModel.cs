@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using ProductiviesApp.ViewModels;
+﻿using ProductiviesApp.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace ProductiviesApp.Models;
 
@@ -12,7 +12,7 @@ public class SkillModel : ViewModelBase
         get => _id;
         set => SetProperty(ref _id, value);
     }
-    
+
     private string _name;
 
     public string Name

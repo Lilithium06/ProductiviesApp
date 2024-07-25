@@ -1,12 +1,11 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using ProductiviesApp.Commands;
+﻿using ProductiviesApp.Commands;
 using ProductiviesApp.Core;
 using ProductiviesApp.DataAccess;
-using ProductiviesApp.DataAccess.Entities;
 using ProductiviesApp.Mappers;
 using ProductiviesApp.Models;
 using ProductiviesApp.Views;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
 
@@ -30,6 +29,7 @@ public class QuestListViewModel : ViewModelBase
     private SkillsDatabase _skillsDatabase;
 
     private ObservableCollection<QuestModel> _allQuests;
+
     public ObservableCollection<QuestModel> AllQuests
     {
         get => _allQuests;
@@ -37,6 +37,7 @@ public class QuestListViewModel : ViewModelBase
     }
 
     private ICommand _goToQuestCreationPageCommand;
+
     public ICommand GoToQuestCreationPageCommand
     {
         get => _goToQuestCreationPageCommand;
@@ -44,12 +45,13 @@ public class QuestListViewModel : ViewModelBase
     }
 
     private ICommand _completeQuestCommand;
+
     public ICommand CompleteQuestCommand
     {
         get => _completeQuestCommand;
         set => SetProperty(ref _completeQuestCommand, value);
     }
-    
+
     public async Task InitializeAsync()
     {
         var quests = await _questDatabase.GetQuestAsync();
@@ -69,7 +71,7 @@ public class QuestListViewModel : ViewModelBase
             skillModelToUpdate.Level = ExpSystem.GetLevelFromExp(skillModelToUpdate.Exp);
             await _skillsDatabase.SaveSkillAsync(skillModelToUpdate.ToEntity());
         }
-        
+
         await _questDatabase.DeleteQuestAsync(questModel.ToEntity());
     }
 }

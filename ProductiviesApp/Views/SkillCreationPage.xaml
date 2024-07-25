@@ -8,13 +8,13 @@
     <ContentPage.BindingContext>
         <viewModels:SkillCreationViewModel></viewModels:SkillCreationViewModel>
     </ContentPage.BindingContext>
-    
+
     <Grid>
         <StackLayout>
-            <Label Text="Name:"/>
-            <Entry Text="{Binding Name}"/>
-            
-            <Button Text="Save" Command="{Binding SaveCommand}"/>
+            <Label Text="Name:" />
+            <Entry Text="{Binding Name}" />
+
+            <Button Text="Save" Command="{Binding SaveCommand}" />
         </StackLayout>
     </Grid>
 </ContentPage>

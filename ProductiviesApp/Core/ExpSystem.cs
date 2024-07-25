@@ -4,14 +4,14 @@ public static class ExpSystem
 {
     private const int _baseExp = 50;
     private const double _growthRate = 1.06;
-    
+
     public static int GetLevelFromExp(int exp)
     {
         var expLeft = exp;
-        
+
         for (int i = 1; i < 101; i++)
         {
-            var expForLevelDouble = _baseExp * Math.Pow(_growthRate, i-1);
+            var expForLevelDouble = _baseExp * Math.Pow(_growthRate, i - 1);
             int expForLevel = (int)expForLevelDouble;
 
             if (expLeft > expForLevel)

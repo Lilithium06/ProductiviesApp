@@ -5,7 +5,7 @@ namespace ProductiviesApp.Models;
 public class PodoromoUnitModel : ViewModelBase
 {
     private int _parts;
-    
+
     public int Parts
     {
         get => _parts;
@@ -19,7 +19,7 @@ public class PodoromoUnitModel : ViewModelBase
         get => _completedParts;
         set => SetProperty(ref _completedParts, value);
     }
-    
+
     private DateTime _timer;
 
     public DateTime Timer

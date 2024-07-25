@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using ProductiviesApp.ViewModels;
+﻿using ProductiviesApp.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace ProductiviesApp.Models;
 
@@ -12,7 +12,7 @@ public class QuestModel : ViewModelBase
         get => _id;
         set => SetProperty(ref _id, value);
     }
-    
+
     private string _name;
 
     public string Name
@@ -28,7 +28,7 @@ public class QuestModel : ViewModelBase
         get => _details;
         set => SetProperty(ref _details, value);
     }
-    
+
     private ObservableCollection<Difficulty> _difficulty;
 
     public ObservableCollection<Difficulty> Difficulty

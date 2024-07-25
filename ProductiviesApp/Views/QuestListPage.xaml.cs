@@ -5,7 +5,7 @@ namespace ProductiviesApp.Views;
 public partial class QuestListPage : ContentPage
 {
     private QuestListViewModel _viewModel;
-    
+
     public QuestListPage(QuestListViewModel viewModel)
     {
         InitializeComponent();
@@ -13,7 +13,7 @@ public partial class QuestListPage : ContentPage
         _viewModel = viewModel;
         BindingContext = viewModel;
     }
-    
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
