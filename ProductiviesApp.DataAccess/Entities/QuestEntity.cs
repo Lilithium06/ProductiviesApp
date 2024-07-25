@@ -6,16 +6,16 @@ namespace ProductiviesApp.DataAccess.Entities;
 public class QuestEntity
 {
     [PrimaryKey, AutoIncrement]
-    public required Guid Id { get; set; }
+    public Guid Id { get; set; }
 
     [NotNull]
-    public required string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
     [NotNull]
-    public required string Details { get; set; }
+    public string Details { get; set; } = string.Empty;
     [NotNull]
-    public required string Difficulty { get; set; }
+    public string Difficulty { get; set; } = string.Empty;
 
     [NotNull]
     [ManyToMany(typeof(QuestSkillEntity))]
-    public required List<SkillEntity> NeededSkills { get; set; }
+    public List<SkillEntity> NeededSkills { get; set; } = [];
 }

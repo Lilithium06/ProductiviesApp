@@ -9,13 +9,13 @@ public class SkillEntity
     public Guid Id { get; set; }
 
     [NotNull]
-    public required string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
     [NotNull]
-    public required int Level { get; set; }
+    public int Level { get; set; }
     [NotNull]
-    public required int Exp { get; set; }
+    public int Exp { get; set; }
 
     [NotNull]
     [ManyToMany(typeof(QuestSkillEntity))]
-    public required List<QuestEntity> NeededInQuests { get; set; }
+    public List<QuestEntity> NeededInQuests { get; set; } = [];
 }
