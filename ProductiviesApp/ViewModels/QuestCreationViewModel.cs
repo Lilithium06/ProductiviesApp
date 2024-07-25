@@ -9,18 +9,14 @@ namespace ProductiviesApp.ViewModels;
 
 public class QuestCreationViewModel : ViewModelBase
 {
-    public QuestCreationViewModel()
-    {
-    }
-
     public QuestCreationViewModel(QuestDatabase questDatabase, SkillsDatabase skillsDatabase)
     {
         _questDatabase = questDatabase;
         _skillsDatabase = skillsDatabase;
-        SaveCommand = new Command(async () => await SaveQuest());
-        AddSkillCommand = new Command(AddSkill);
-        RemoveSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
-        GoToLastPageCommand = new GoToPageCommand("..");
+        _saveCommand = new Command(async () => await SaveQuest());
+        _addSkillCommand = new Command(AddSkill);
+        _removeSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
+        _goToLastPageCommand = new GoToPageCommand("..");
 
         new Thread(async () => await Initialize()).Start();
     }
@@ -28,7 +24,7 @@ public class QuestCreationViewModel : ViewModelBase
     private readonly QuestDatabase _questDatabase;
     private readonly SkillsDatabase _skillsDatabase;
 
-    private string _name;
+    private string _name = string.Empty;
 
     public string Name
     {
@@ -36,7 +32,7 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _name, value);
     }
 
-    private string _details;
+    private string _details = string.Empty;
 
     public string Details
     {
@@ -44,7 +40,7 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _details, value);
     }
 
-    private ObservableCollection<SkillDifficultyModel> _availableSkillDifficulties;
+    private ObservableCollection<SkillDifficultyModel> _availableSkillDifficulties = [];
 
     public ObservableCollection<SkillDifficultyModel> AvailableSkillDifficulties
     {
@@ -52,7 +48,7 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _availableSkillDifficulties, value);
     }
 
-    private ObservableCollection<SkillModel> _allSkills;
+    private ObservableCollection<SkillModel> _allSkills = [];
 
     public ObservableCollection<SkillModel> AllSkills
     {
@@ -60,7 +56,7 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _allSkills, value);
     }
 
-    private ObservableCollection<Difficulty> _allDifficulties;
+    private ObservableCollection<Difficulty> _allDifficulties = [];
 
     public ObservableCollection<Difficulty> AllDifficulties
     {
