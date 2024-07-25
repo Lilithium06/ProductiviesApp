@@ -15,6 +15,7 @@ public class QuestEntity
     [NotNull]
     public required string Difficulty { get; set; }
 
+    [NotNull]
     [ManyToMany(typeof(QuestSkillEntity))]
     public required List<SkillEntity> NeededSkills { get; set; }
 }
