@@ -8,19 +8,16 @@ public static class QuestMapper
 {
     public static QuestModel ToModel(this QuestEntity entity)
     {
-        var returnModel = new QuestModel()
+        var returnModel = new QuestModel
         {
             Id = entity.Id,
             Name = entity.Name,
             Details = entity.Details,
-            Difficulty = entity.Difficulty.StringToDifficulties()
-        };
+            Difficulty = entity.Difficulty.StringToDifficulties(),
 
-        if (entity.NeededSkills is null)
-            returnModel.NeededSkills = new ObservableCollection<SkillModel>();
-        else
-            returnModel.NeededSkills =
-                new ObservableCollection<SkillModel>(entity.NeededSkills.Select(s => s.ToModel()));
+            NeededSkills = entity.NeededSkills is null ? ([]) :
+            new ObservableCollection<SkillModel>(entity.NeededSkills.Select(s => s.ToModel()))
+        };
 
         return returnModel;
     }
@@ -38,13 +35,9 @@ public static class QuestMapper
     }
 
     private static string DifficultiesToString(this ObservableCollection<Difficulty> difficulties)
-    {
-        return string.Join(' ', difficulties.Select(d => d.ToString()));
-    }
+        => string.Join(' ', difficulties.Select(d => d.ToString()));
 
     private static ObservableCollection<Difficulty> StringToDifficulties(this string difficultiesString)
-    {
-        return new ObservableCollection<Difficulty>(difficultiesString.Split(' ')
+        => new(difficultiesString.Split(' ')
             .Select(d => Enum.TryParse(typeof(Difficulty), d, out object? result) ? (Difficulty)result : Difficulty.VeryEasy));
-    }
 }

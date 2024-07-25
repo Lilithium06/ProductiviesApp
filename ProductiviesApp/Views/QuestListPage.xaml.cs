@@ -4,7 +4,7 @@ namespace ProductiviesApp.Views;
 
 public partial class QuestListPage : ContentPage
 {
-    private QuestListViewModel _viewModel;
+    private readonly QuestListViewModel _viewModel;
 
     public QuestListPage(QuestListViewModel viewModel)
     {

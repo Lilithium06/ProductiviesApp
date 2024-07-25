@@ -4,7 +4,7 @@ namespace ProductiviesApp.Core;
 
 public static class ExpForDifficulty
 {
-    public static readonly Dictionary<Difficulty, int> DifficultyForExpMap = new Dictionary<Difficulty, int>
+    public static readonly Dictionary<Difficulty, int> DifficultyForExpMap = new()
     {
         { Difficulty.VeryEasy, 50},
         { Difficulty.Easy, 100 },

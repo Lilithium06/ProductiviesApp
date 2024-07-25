@@ -37,14 +37,14 @@ public class MainPageViewModel : ViewModelBase
         set => SetProperty(ref _startTimer, value);
     }
 
-    private IDispatcherTimer _timer;
+    private readonly IDispatcherTimer _timer;
 
     private void RemoveOneSecond(object? o, EventArgs e)
     {
         if (PodoromoUnitModel.Timer.Minute == 0 && PodoromoUnitModel.Timer.Second == 0)
         {
             _timer.Stop();
-            PodoromoUnitModel.CompletedParts += 1;
+            PodoromoUnitModel.CompletedParts++;
 
             if (PodoromoUnitModel.Parts == PodoromoUnitModel.CompletedParts)
             {

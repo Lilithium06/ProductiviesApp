@@ -120,10 +120,11 @@ public class QuestCreationViewModel : ViewModelBase
 
         var skillDifficulties = _allSkills.Select(s =>
         {
-            var skillDifficulty = new SkillDifficultyModel();
-            skillDifficulty.SkillModel = s;
-            skillDifficulty.Difficulty = AllDifficulties.First();
-            return skillDifficulty;
+            return new SkillDifficultyModel
+            {
+                SkillModel = s,
+                Difficulty = AllDifficulties.First()
+            };
         });
 
         AvailableSkillDifficulties = new ObservableCollection<SkillDifficultyModel>(skillDifficulties);
