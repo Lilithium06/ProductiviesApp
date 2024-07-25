@@ -45,6 +45,6 @@ public static class QuestMapper
     private static ObservableCollection<Difficulty> StringToDifficulties(this string difficultiesString)
     {
         return new ObservableCollection<Difficulty>(difficultiesString.Split(' ')
-            .Select(d => (Difficulty)Enum.Parse(typeof(Difficulty), d)));
+            .Select(d => Enum.TryParse(typeof(Difficulty), d, out object? result) ? (Difficulty)result : Difficulty.VeryEasy));
     }
 }
