@@ -13,7 +13,7 @@ public class QuestModel : ViewModelBase
         set => SetProperty(ref _id, value);
     }
 
-    private string _name;
+    private string _name = string.Empty;
 
     public string Name
     {
@@ -21,7 +21,7 @@ public class QuestModel : ViewModelBase
         set => SetProperty(ref _name, value);
     }
 
-    private string _details;
+    private string _details = string.Empty;
 
     public string Details
     {
@@ -29,7 +29,7 @@ public class QuestModel : ViewModelBase
         set => SetProperty(ref _details, value);
     }
 
-    private ObservableCollection<Difficulty> _difficulty;
+    private ObservableCollection<Difficulty> _difficulty = [];
 
     public ObservableCollection<Difficulty> Difficulty
     {
@@ -37,7 +37,7 @@ public class QuestModel : ViewModelBase
         set => SetProperty(ref _difficulty, value);
     }
 
-    private ObservableCollection<SkillModel> _neededSkills;
+    private ObservableCollection<SkillModel> _neededSkills = [];
 
     public ObservableCollection<SkillModel> NeededSkills
     {
