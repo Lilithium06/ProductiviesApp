@@ -6,33 +6,32 @@
     xmlns:views="clr-namespace:ProductiviesApp.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="ProductiviesApp">
-    
+
     <Shell.Resources>
         <Style TargetType="TabBar">
-            <Setter Property="Shell.TabBarBackgroundColor" Value="#191970"/>
-            <Setter Property="Shell.TabBarUnselectedColor" Value="#C0C0C0"/>
-            <Setter Property="Shell.TabBarTitleColor" Value="#50C878"/>
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#191970" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#C0C0C0" />
+            <Setter Property="Shell.TabBarTitleColor" Value="#50C878" />
         </Style>
     </Shell.Resources>
-    
+
     <TabBar>
         <ShellContent
             Title="Quests"
             Shell.NavBarIsVisible="False"
             ContentTemplate="{DataTemplate views:QuestListPage}"
-            Route="QuestListPage"/>
-        
+            Route="QuestListPage" />
+
         <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate views:MainPage}"
             Shell.NavBarIsVisible="False"
             Route="MainPage" />
-        
+
         <ShellContent
             Title="Skills"
             ContentTemplate="{DataTemplate views:SkillsListPage}"
             Shell.NavBarIsVisible="False"
-            Route="SkillsListPage"/>
+            Route="SkillsListPage" />
     </TabBar>
-
 </Shell>

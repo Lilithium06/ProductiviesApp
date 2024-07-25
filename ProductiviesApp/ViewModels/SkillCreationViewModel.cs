@@ -1,8 +1,8 @@
-﻿using System.Windows.Input;
-using ProductiviesApp.Commands;
+﻿using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
 using ProductiviesApp.Models;
+using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
 
@@ -10,19 +10,14 @@ public class SkillCreationViewModel : ViewModelBase
 {
     public SkillCreationViewModel()
     {
-        
-    }
-    
-    public SkillCreationViewModel(SkillsDatabase database)
-    {
-        _skillsDatabase = database;
-        SaveCommand = new Command(async () => await SaveSkill());
-        GoToLastPageCommand = new GoToPageCommand("..");
+        _skillsDatabase = new();
+        _saveCommand = new Command(async () => await SaveSkill());
+        _goToLastPageCommand = new GoToPageCommand("..");
     }
 
     private readonly SkillsDatabase _skillsDatabase;
-    
-    private string _name;
+
+    private string _name = string.Empty;
 
     public string Name
     {
@@ -45,7 +40,7 @@ public class SkillCreationViewModel : ViewModelBase
         get => _goToLastPageCommand;
         set => SetProperty(ref _goToLastPageCommand, value);
     }
-    
+
     private async Task<int> SaveSkill()
     {
         var skillToSave = new SkillModel()
@@ -57,7 +52,7 @@ public class SkillCreationViewModel : ViewModelBase
         };
 
         GoToLastPageCommand.Execute(null);
-        
+
         return await _skillsDatabase.SaveSkillAsync(skillToSave.ToEntity());
     }
 }

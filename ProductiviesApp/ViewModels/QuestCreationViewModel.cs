@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using ProductiviesApp.Commands;
+﻿using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
 using ProductiviesApp.Models;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
 
@@ -11,24 +11,20 @@ public class QuestCreationViewModel : ViewModelBase
 {
     public QuestCreationViewModel()
     {
-    }
+        _questDatabase = new();
+        _skillsDatabase = new();
+        _saveCommand = new Command(async () => await SaveQuest());
+        _addSkillCommand = new Command(AddSkill);
+        _removeSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
+        _goToLastPageCommand = new GoToPageCommand("..");
 
-    public QuestCreationViewModel(QuestDatabase questDatabase, SkillsDatabase skillsDatabase)
-    {
-        _questDatabase = questDatabase;
-        _skillsDatabase = skillsDatabase;
-        SaveCommand = new Command(async () => await SaveQuest());
-        AddSkillCommand = new Command(AddSkill);
-        RemoveSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
-        GoToLastPageCommand = new GoToPageCommand("..");
-
-        Initialize();
+        new Thread(async () => await Initialize()).Start();
     }
 
     private readonly QuestDatabase _questDatabase;
     private readonly SkillsDatabase _skillsDatabase;
 
-    private string _name;
+    private string _name = string.Empty;
 
     public string Name
     {
@@ -36,7 +32,7 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _name, value);
     }
 
-    private string _details;
+    private string _details = string.Empty;
 
     public string Details
     {
@@ -44,29 +40,32 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _details, value);
     }
 
-    private ObservableCollection<SkillDifficultyModel> _availableSkillDifficulties;
+    private ObservableCollection<SkillDifficultyModel> _availableSkillDifficulties = [];
+
     public ObservableCollection<SkillDifficultyModel> AvailableSkillDifficulties
     {
         get => _availableSkillDifficulties;
         set => SetProperty(ref _availableSkillDifficulties, value);
     }
-    
-    private ObservableCollection<SkillModel> _allSkills;
+
+    private ObservableCollection<SkillModel> _allSkills = [];
+
     public ObservableCollection<SkillModel> AllSkills
     {
         get => _allSkills;
         set => SetProperty(ref _allSkills, value);
     }
 
-    private ObservableCollection<Difficulty> _allDifficulties;
+    private ObservableCollection<Difficulty> _allDifficulties = [];
 
     public ObservableCollection<Difficulty> AllDifficulties
     {
         get => _allDifficulties;
         set => SetProperty(ref _allDifficulties, value);
     }
-    
+
     private ICommand _saveCommand;
+
     public ICommand SaveCommand
     {
         get => _saveCommand;
@@ -74,6 +73,7 @@ public class QuestCreationViewModel : ViewModelBase
     }
 
     private ICommand _addSkillCommand;
+
     public ICommand AddSkillCommand
     {
         get => _addSkillCommand;
@@ -103,8 +103,8 @@ public class QuestCreationViewModel : ViewModelBase
             Id = Guid.Empty,
             Name = Name,
             Details = Details,
-            NeededSkills = new ObservableCollection<SkillModel>( AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
-            Difficulty = new ObservableCollection<Difficulty>( AvailableSkillDifficulties.Select(sd => sd.Difficulty))
+            NeededSkills = new ObservableCollection<SkillModel>(AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
+            Difficulty = new ObservableCollection<Difficulty>(AvailableSkillDifficulties.Select(sd => sd.Difficulty))
         };
 
         GoToLastPageCommand.Execute(null);
@@ -115,20 +115,21 @@ public class QuestCreationViewModel : ViewModelBase
     private async Task Initialize()
     {
         var skillEntities = await _skillsDatabase.GetSkillsAsync();
-        AllSkills =  new ObservableCollection<SkillModel>(skillEntities.Select(s => s.ToModel()));
+        AllSkills = new ObservableCollection<SkillModel>(skillEntities.Select(s => s.ToModel()));
         AllDifficulties = new ObservableCollection<Difficulty>(Enum.GetValues<Difficulty>());
-        
+
         var skillDifficulties = _allSkills.Select(s =>
         {
-            var skillDifficulty = new SkillDifficultyModel();
-            skillDifficulty.SkillModel = s;
-            skillDifficulty.Difficulty = AllDifficulties.First();
-            return skillDifficulty;
+            return new SkillDifficultyModel
+            {
+                SkillModel = s,
+                Difficulty = AllDifficulties.First()
+            };
         });
-        
+
         AvailableSkillDifficulties = new ObservableCollection<SkillDifficultyModel>(skillDifficulties);
     }
-    
+
     private void AddSkill()
     {
         var newSkillDifficulty = new SkillDifficultyModel

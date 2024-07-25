@@ -9,23 +9,22 @@
     <ContentPage.BindingContext>
         <viewModels:SkillListViewModel></viewModels:SkillListViewModel>
     </ContentPage.BindingContext>
-    
+
     <Grid>
         <ListView RowHeight="100" ItemsSource="{Binding AllSkills}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:SkillModel">
                     <ViewCell>
-                        <StackLayout >
-                            <Label Text="{Binding Name}" FontSize="Large"/>
-                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium"/>
-                            <Label Text="{Binding Exp}" FontSize="Medium"/>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontSize="Large" />
+                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium" />
+                            <Label Text="{Binding Exp}" FontSize="Medium" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Button Command="{Binding GoToSkillCreationPageCommand}" Text="Add" VerticalOptions="End" HorizontalOptions="End"/>
-        
+
+        <Button Command="{Binding GoToSkillCreationPageCommand}" Text="Add" VerticalOptions="End" HorizontalOptions="End" />
     </Grid>
 </ContentPage>

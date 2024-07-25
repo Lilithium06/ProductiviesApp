@@ -5,15 +5,21 @@ namespace ProductiviesApp.DataAccess;
 
 public class QuestDatabase
 {
-    private SQLiteAsyncConnection Database;
-    
-    async Task Init()
+    private SQLiteAsyncConnection? _database;
+
+    public SQLiteAsyncConnection Database
     {
-        if (Database is not null)
+        get { return _database ?? throw new ArgumentNullException(); }
+        set { _database = value; }
+    }
+
+    private async Task Init()
+    {
+        if (_database is not null)
             return;
-        
+
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        
+
         await Database.CreateTableAsync<SkillEntity>();
         await Database.CreateTableAsync<QuestEntity>();
         await Database.CreateTableAsync<QuestSkillEntity>();
@@ -22,15 +28,15 @@ public class QuestDatabase
     public async Task<List<QuestEntity>> GetQuestAsync()
     {
         await Init();
-        var quests =  await Database.Table<QuestEntity>().ToListAsync();
-        
+        var quests = await Database.Table<QuestEntity>().ToListAsync();
+
         foreach (var quest in quests)
         {
             quest.NeededSkills = new List<SkillEntity>();
             var questSkillEntities = await Database.Table<QuestSkillEntity>()
                 .Where(qs => qs.QuestId == quest.Id)
                 .ToListAsync();
-            
+
             foreach (var questSkillEntity in questSkillEntities)
             {
                 var skill = await Database.Table<SkillEntity>()

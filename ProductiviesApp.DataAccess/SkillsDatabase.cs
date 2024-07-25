@@ -5,15 +5,21 @@ namespace ProductiviesApp.DataAccess;
 
 public class SkillsDatabase
 {
-    private SQLiteAsyncConnection Database;
-    
-    async Task Init()
+    private SQLiteAsyncConnection? _database;
+
+    public SQLiteAsyncConnection Database
     {
-        if (Database is not null)
+        get { return _database ?? throw new ArgumentNullException(); }
+        set { _database = value; }
+    }
+
+    private async Task Init()
+    {
+        if (_database is not null)
             return;
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        
+
         await Database.CreateTableAsync<SkillEntity>();
         await Database.CreateTableAsync<QuestEntity>();
         await Database.CreateTableAsync<QuestSkillEntity>();
@@ -24,7 +30,7 @@ public class SkillsDatabase
         await Init();
         return await Database.Table<SkillEntity>().ToListAsync();
     }
-    
+
     public async Task<SkillEntity> GetSkillByIdAsync(Guid id)
     {
         await Init();

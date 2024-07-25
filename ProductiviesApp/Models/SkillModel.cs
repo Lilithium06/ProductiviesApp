@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using ProductiviesApp.ViewModels;
+﻿using ProductiviesApp.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace ProductiviesApp.Models;
 
@@ -12,8 +12,8 @@ public class SkillModel : ViewModelBase
         get => _id;
         set => SetProperty(ref _id, value);
     }
-    
-    private string _name;
+
+    private string _name = string.Empty;
 
     public string Name
     {
@@ -37,7 +37,7 @@ public class SkillModel : ViewModelBase
         set => SetProperty(ref _exp, value);
     }
 
-    private ObservableCollection<QuestModel> _neededInQuests;
+    private ObservableCollection<QuestModel> _neededInQuests = [];
 
     public ObservableCollection<QuestModel> NeededInQuests
     {

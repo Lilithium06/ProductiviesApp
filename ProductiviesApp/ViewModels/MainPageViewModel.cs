@@ -7,43 +7,44 @@ public class MainPageViewModel : ViewModelBase
 {
     public MainPageViewModel()
     {
-        PodoromoUnitModel = new PodoromoUnitModel()
+        _podoromoUnitModel = new PodoromoUnitModel()
         {
-            Timer = new DateTime(1, 1 , 1, 0, 0, 12)
+            Timer = new DateTime(1, 1, 1, 0, 0, 12)
         };
-        _timer = Application.Current.Dispatcher.CreateTimer();
-        
-        StartTimer = new Command(async () =>
+        _timer = Application.Current?.Dispatcher.CreateTimer() ?? throw new ArgumentNullException();
+
+        _startTimer = new Command(() =>
         {
             _timer.Tick += RemoveOneSecond;
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Start();
         });
     }
-    
-    private PodoromoUnitModel? _podoromoUnitModel;
-    public PodoromoUnitModel? PodoromoUnitModel
+
+    private PodoromoUnitModel _podoromoUnitModel;
+
+    public PodoromoUnitModel PodoromoUnitModel
     {
         get => _podoromoUnitModel;
         set => SetProperty(ref _podoromoUnitModel, value);
     }
 
     private ICommand _startTimer;
-    
+
     public ICommand StartTimer
     {
         get => _startTimer;
         set => SetProperty(ref _startTimer, value);
     }
 
-    private IDispatcherTimer _timer;
+    private readonly IDispatcherTimer _timer;
 
     private void RemoveOneSecond(object? o, EventArgs e)
     {
         if (PodoromoUnitModel.Timer.Minute == 0 && PodoromoUnitModel.Timer.Second == 0)
         {
             _timer.Stop();
-            PodoromoUnitModel.CompletedParts += 1;
+            PodoromoUnitModel.CompletedParts++;
 
             if (PodoromoUnitModel.Parts == PodoromoUnitModel.CompletedParts)
             {
@@ -52,8 +53,7 @@ public class MainPageViewModel : ViewModelBase
 
             return;
         }
-        
+
         PodoromoUnitModel.Timer = PodoromoUnitModel.Timer.AddSeconds(-1);
     }
-
 }

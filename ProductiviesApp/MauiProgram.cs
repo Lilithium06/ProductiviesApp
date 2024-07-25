@@ -25,7 +25,7 @@ namespace ProductiviesApp
                 .RegisterDataAccess();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
@@ -77,6 +77,4 @@ namespace ProductiviesApp
             return mauiAppBuilder;
         }
     }
-
-
 }

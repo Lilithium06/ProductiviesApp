@@ -9,40 +9,40 @@
     <ContentPage.BindingContext>
         <viewModels:QuestCreationViewModel></viewModels:QuestCreationViewModel>
     </ContentPage.BindingContext>
-    
+
     <Grid>
         <StackLayout>
-            <Label Text="Name:"/>
-            <Entry Text="{Binding Name}"/>
-            
-            <Label Text="Details:"/>
-            <Entry Text="{Binding Details}"/>
-            
-            <Label Text="Skills:"/>
+            <Label Text="Name:" />
+            <Entry Text="{Binding Name}" />
+
+            <Label Text="Details:" />
+            <Entry Text="{Binding Details}" />
+
+            <Label Text="Skills:" />
             <ListView ItemsSource="{Binding AvailableSkillDifficulties}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:SkillDifficultyModel">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Picker ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestCreationViewModel}}, Path=AllSkills}"
-                                        SelectedItem="{Binding SkillModel}" 
+                                        SelectedItem="{Binding SkillModel}"
                                         ItemDisplayBinding="{Binding Name}"
-                                        WidthRequest="200"/>
+                                        WidthRequest="200" />
                                 <Picker ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestCreationViewModel}}, Path=AllDifficulties}"
-                                        SelectedItem="{Binding Difficulty}" 
-                                        WidthRequest="200"/>
-                                <Button Text="Remove" Command="{Binding Path=BindingContext.RemoveSkillCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}"/>
+                                        SelectedItem="{Binding Difficulty}"
+                                        WidthRequest="200" />
+                                <Button Text="Remove" Command="{Binding Path=BindingContext.RemoveSkillCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
-            <Label Text="{Binding AvailableSkillDifficulties.Count}"/>
 
-            <Button Text="Add Skill" Command="{Binding AddSkillCommand}"/>
+            <Label Text="{Binding AvailableSkillDifficulties.Count}" />
 
-            <Button Text="Save Quest" Command="{Binding SaveCommand}"/>
+            <Button Text="Add Skill" Command="{Binding AddSkillCommand}" />
+
+            <Button Text="Save Quest" Command="{Binding SaveCommand}" />
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -7,7 +7,7 @@ namespace ProductiviesApp
         public AppShell()
         {
             InitializeComponent();
-            
+
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(QuestListPage), typeof(QuestListPage));
             Routing.RegisterRoute(nameof(QuestCreationPage), typeof(QuestCreationPage));

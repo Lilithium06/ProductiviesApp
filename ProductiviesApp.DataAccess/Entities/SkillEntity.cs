@@ -7,10 +7,15 @@ public class SkillEntity
 {
     [PrimaryKey, AutoIncrement]
     public Guid Id { get; set; }
-    public string Name { get; set; }
+
+    [NotNull]
+    public string Name { get; set; } = string.Empty;
+    [NotNull]
     public int Level { get; set; }
+    [NotNull]
     public int Exp { get; set; }
-    
+
+    [NotNull]
     [ManyToMany(typeof(QuestSkillEntity))]
-    public List<QuestEntity> NeededInQuests { get; set; }
+    public List<QuestEntity> NeededInQuests { get; set; } = [];
 }

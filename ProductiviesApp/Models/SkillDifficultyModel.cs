@@ -4,7 +4,7 @@ namespace ProductiviesApp.Models;
 
 public class SkillDifficultyModel : ViewModelBase
 {
-    private SkillModel _skillModel;
+    private SkillModel _skillModel = new();
 
     public SkillModel SkillModel
     {
