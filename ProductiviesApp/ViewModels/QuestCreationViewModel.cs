@@ -9,10 +9,10 @@ namespace ProductiviesApp.ViewModels;
 
 public class QuestCreationViewModel : ViewModelBase
 {
-    public QuestCreationViewModel(QuestDatabase questDatabase, SkillsDatabase skillsDatabase)
+    public QuestCreationViewModel()
     {
-        _questDatabase = questDatabase;
-        _skillsDatabase = skillsDatabase;
+        _questDatabase = new();
+        _skillsDatabase = new();
         _saveCommand = new Command(async () => await SaveQuest());
         _addSkillCommand = new Command(AddSkill);
         _removeSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);

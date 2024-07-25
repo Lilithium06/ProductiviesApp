@@ -4,7 +4,7 @@ namespace ProductiviesApp.Views;
 
 public partial class SkillsListPage : ContentPage
 {
-    private SkillListViewModel _viewModel;
+    private readonly SkillListViewModel _viewModel;
 
     public SkillsListPage(SkillListViewModel viewModel)
     {

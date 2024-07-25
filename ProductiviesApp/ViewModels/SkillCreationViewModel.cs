@@ -10,18 +10,14 @@ public class SkillCreationViewModel : ViewModelBase
 {
     public SkillCreationViewModel()
     {
-    }
-
-    public SkillCreationViewModel(SkillsDatabase database)
-    {
-        _skillsDatabase = database;
-        SaveCommand = new Command(async () => await SaveSkill());
-        GoToLastPageCommand = new GoToPageCommand("..");
+        _skillsDatabase = new();
+        _saveCommand = new Command(async () => await SaveSkill());
+        _goToLastPageCommand = new GoToPageCommand("..");
     }
 
     private readonly SkillsDatabase _skillsDatabase;
 
-    private string _name;
+    private string _name = string.Empty;
 
     public string Name
     {

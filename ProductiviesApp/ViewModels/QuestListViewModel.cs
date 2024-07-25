@@ -11,13 +11,13 @@ namespace ProductiviesApp.ViewModels;
 
 public class QuestListViewModel : ViewModelBase
 {
-    public QuestListViewModel(QuestDatabase questDatabase, SkillsDatabase skillsDatabase)
+    public QuestListViewModel()
     {
-        _questDatabase = questDatabase;
-        _skillsDatabase = skillsDatabase;
+        _questDatabase = new();
+        _skillsDatabase = new();
         new Thread(async () => await InitializeAsync()).Start();
 
-        _goToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel(questDatabase, skillsDatabase)}");
+        _goToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
         _completeQuestCommand = new Command<QuestModel>(async (questModel) => await CompleteQuest(questModel));
     }
 

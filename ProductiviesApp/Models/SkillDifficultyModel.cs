@@ -4,9 +4,9 @@ namespace ProductiviesApp.Models;
 
 public class SkillDifficultyModel : ViewModelBase
 {
-    private SkillModel _skillModel;
+    private SkillModel? _skillModel;
 
-    public SkillModel SkillModel
+    public SkillModel? SkillModel
     {
         get => _skillModel;
         set => SetProperty(ref _skillModel, value);

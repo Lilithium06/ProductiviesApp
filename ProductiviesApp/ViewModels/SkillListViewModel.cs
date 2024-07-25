@@ -12,18 +12,14 @@ public class SkillListViewModel : ViewModelBase
 {
     public SkillListViewModel()
     {
-    }
-
-    public SkillListViewModel(SkillsDatabase skillsDatabase)
-    {
-        _skillsDatabase = skillsDatabase;
+        _skillsDatabase = new();
         new Thread(async () => await InitializeAsync()).Start();
 
-        GoToSkillCreationPageCommand = new GoToPageCommand($"{nameof(SkillCreationPage)}?param1={new SkillCreationViewModel()}");
-        _allSkills = new ObservableCollection<SkillModel>();
+        _goToSkillCreationPageCommand = new GoToPageCommand($"{nameof(SkillCreationPage)}?param1={new SkillCreationViewModel()}");
+        _allSkills = [];
     }
 
-    private SkillsDatabase _skillsDatabase;
+    private readonly SkillsDatabase _skillsDatabase;
 
     private ObservableCollection<SkillModel> _allSkills;
 
