@@ -19,6 +19,6 @@ public partial class SkillsListPage : ContentPage
     {
         base.OnAppearing();
 
-        _viewModel.InitializeAsync();
+        new Thread(async () => await _viewModel.InitializeAsync()).Start();
     }
 }

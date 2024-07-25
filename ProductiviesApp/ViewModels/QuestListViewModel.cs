@@ -19,7 +19,7 @@ public class QuestListViewModel : ViewModelBase
     {
         _questDatabase = questDatabase;
         _skillsDatabase = skillsDatabase;
-        InitializeAsync();
+        new Thread(async () => await InitializeAsync()).Start();
 
         GoToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
         CompleteQuestCommand = new Command<QuestModel>(async (questModel) => await CompleteQuest(questModel));

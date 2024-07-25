@@ -17,7 +17,7 @@ public class SkillListViewModel : ViewModelBase
     public SkillListViewModel(SkillsDatabase skillsDatabase)
     {
         _skillsDatabase = skillsDatabase;
-        InitializeAsync();
+        new Thread(async () => await InitializeAsync()).Start();
 
         GoToSkillCreationPageCommand = new GoToPageCommand($"{nameof(SkillCreationPage)}?param1={new SkillCreationViewModel()}");
         _allSkills = new ObservableCollection<SkillModel>();

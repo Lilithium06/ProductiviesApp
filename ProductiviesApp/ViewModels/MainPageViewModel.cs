@@ -13,7 +13,7 @@ public class MainPageViewModel : ViewModelBase
         };
         _timer = Application.Current.Dispatcher.CreateTimer();
 
-        StartTimer = new Command(async () =>
+        StartTimer = new Command(() =>
         {
             _timer.Tick += RemoveOneSecond;
             _timer.Interval = TimeSpan.FromSeconds(1);

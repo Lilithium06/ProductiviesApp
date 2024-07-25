@@ -22,7 +22,7 @@ public class QuestCreationViewModel : ViewModelBase
         RemoveSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
         GoToLastPageCommand = new GoToPageCommand("..");
 
-        Initialize();
+        new Thread(async () => await Initialize()).Start();
     }
 
     private readonly QuestDatabase _questDatabase;
