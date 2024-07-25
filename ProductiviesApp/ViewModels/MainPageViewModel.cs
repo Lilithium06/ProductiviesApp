@@ -7,13 +7,13 @@ public class MainPageViewModel : ViewModelBase
 {
     public MainPageViewModel()
     {
-        PodoromoUnitModel = new PodoromoUnitModel()
+        _podoromoUnitModel = new PodoromoUnitModel()
         {
             Timer = new DateTime(1, 1, 1, 0, 0, 12)
         };
-        _timer = Application.Current.Dispatcher.CreateTimer();
+        _timer = Application.Current?.Dispatcher.CreateTimer() ?? throw new ArgumentNullException();
 
-        StartTimer = new Command(() =>
+        _startTimer = new Command(() =>
         {
             _timer.Tick += RemoveOneSecond;
             _timer.Interval = TimeSpan.FromSeconds(1);
@@ -21,9 +21,9 @@ public class MainPageViewModel : ViewModelBase
         });
     }
 
-    private PodoromoUnitModel? _podoromoUnitModel;
+    private PodoromoUnitModel _podoromoUnitModel;
 
-    public PodoromoUnitModel? PodoromoUnitModel
+    public PodoromoUnitModel PodoromoUnitModel
     {
         get => _podoromoUnitModel;
         set => SetProperty(ref _podoromoUnitModel, value);
