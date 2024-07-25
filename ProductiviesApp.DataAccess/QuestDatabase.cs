@@ -5,17 +5,17 @@ namespace ProductiviesApp.DataAccess;
 
 public class QuestDatabase
 {
-    private SQLiteAsyncConnection? database;
+    private SQLiteAsyncConnection? _database;
 
     public SQLiteAsyncConnection Database
     {
-        get { return database ?? throw new ArgumentNullException(); }
-        set { database = value; }
+        get { return _database ?? throw new ArgumentNullException(); }
+        set { _database = value; }
     }
 
     private async Task Init()
     {
-        if (database is not null)
+        if (_database is not null)
             return;
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
