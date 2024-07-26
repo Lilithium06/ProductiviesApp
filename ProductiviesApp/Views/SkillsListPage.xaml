@@ -7,18 +7,18 @@
              x:Class="ProductiviesApp.Views.SkillsListPage"
              x:DataType="viewModels:SkillListViewModel">
     <ContentPage.BindingContext>
-        <viewModels:SkillListViewModel></viewModels:SkillListViewModel>
+        <viewModels:SkillListViewModel />
     </ContentPage.BindingContext>
 
     <Grid>
         <ListView RowHeight="100" ItemsSource="{Binding AllSkills}">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:SkillModel">
+                <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Name}" FontSize="Large" />
-                            <Label Text="{Binding Level, StringFormat='Lv. {0}'}" FontSize="Medium" />
-                            <Label Text="{Binding Exp}" FontSize="Medium" />
+                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" FontSize="Large" />
+                            <Label Text="{Binding Level, Source={RelativeSource AncestorType={x:Type models:SkillModel}}, StringFormat='Lv. {0}'}" FontSize="Medium" />
+                            <Label Text="{Binding Exp, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" FontSize="Medium" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
