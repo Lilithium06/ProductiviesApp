@@ -1,13 +1,6 @@
-﻿using ProductiviesApp.ViewModels;
-
-namespace ProductiviesApp.Views;
+﻿namespace ProductiviesApp.Views;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage(MainPageViewModel viewModel)
-    {
-        InitializeComponent();
-
-        BindingContext = viewModel;
-    }
+    public MainPage() => InitializeComponent();
 }

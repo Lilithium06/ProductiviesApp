@@ -1,13 +1,6 @@
-﻿using ProductiviesApp.ViewModels;
-
-namespace ProductiviesApp.Views;
+﻿namespace ProductiviesApp.Views;
 
 public partial class SkillCreationPage : ContentPage
 {
-    public SkillCreationPage(SkillCreationViewModel viewModel)
-    {
-        InitializeComponent();
-
-        BindingContext = viewModel;
-    }
+    public SkillCreationPage() => InitializeComponent();
 }

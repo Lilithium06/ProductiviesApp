@@ -6,6 +6,9 @@
              BackgroundColor="#E6E6FA"
              x:Class="ProductiviesApp.Views.MainPage"
              x:DataType="viewModels:MainPageViewModel">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel />
+    </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
