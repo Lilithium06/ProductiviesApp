@@ -1,4 +1,4 @@
-﻿using ProductiviesApp.Models;
+﻿using ProductiviesApp.Model;
 using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
@@ -17,7 +17,7 @@ public class MainPageViewModel : ViewModelBase
         });
     }
 
-    public readonly PodoromoUnitModel PodoromoUnitModel = new();
+    public readonly PodoromoUnit PodoromoUnit = new();
 
     public ICommand StartTimer { get; }
 
@@ -31,15 +31,14 @@ public class MainPageViewModel : ViewModelBase
         set { SetProperty(ref _timer, value); }
     }
 
-
     private void RemoveOneSecond(object? o, EventArgs e)
     {
         if (Timer.Minute == 0 && Timer.Second == 0)
         {
             _dispatcherTimer.Stop();
-            PodoromoUnitModel.CompletedParts++;
+            PodoromoUnit.CompletedParts++;
 
-            if (PodoromoUnitModel.Parts == PodoromoUnitModel.CompletedParts)
+            if (PodoromoUnit.Parts == PodoromoUnit.CompletedParts)
             {
                 //Do stuff that gives extra exp
             }

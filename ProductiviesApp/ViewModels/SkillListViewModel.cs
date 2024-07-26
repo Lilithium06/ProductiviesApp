@@ -1,7 +1,7 @@
 ﻿using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 using ProductiviesApp.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -19,7 +19,7 @@ public class SkillListViewModel : ViewModelBase
 
     private readonly SkillsDatabase _skillsDatabase = new();
 
-    public ObservableCollection<SkillModel> AllSkills { get; } = [];
+    public ObservableCollection<Skill> AllSkills { get; } = [];
 
     public ICommand GoToSkillCreationPageCommand { get; }
 

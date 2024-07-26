@@ -2,7 +2,7 @@
 using ProductiviesApp.Core;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 using ProductiviesApp.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -16,13 +16,13 @@ public class QuestListViewModel : ViewModelBase
         new Thread(async () => await InitializeAsync()).Start();
 
         GoToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
-        CompleteQuestCommand = new Command<QuestModel>(async (questModel) => await CompleteQuest(questModel));
+        CompleteQuestCommand = new Command<Quest>(async (questModel) => await CompleteQuest(questModel));
     }
 
     private readonly QuestDatabase _questDatabase = new();
     private readonly SkillsDatabase _skillsDatabase = new();
 
-    public ObservableCollection<QuestModel> AllQuests { get; } = [];
+    public ObservableCollection<Quest> AllQuests { get; } = [];
 
     public ICommand GoToQuestCreationPageCommand { get; }
     public ICommand CompleteQuestCommand { get; }
@@ -38,17 +38,17 @@ public class QuestListViewModel : ViewModelBase
         });
     }
 
-    private async Task CompleteQuest(QuestModel questModel)
+    private async Task CompleteQuest(Quest quest)
     {
-        for (int i = 0; i < questModel.NeededSkills.Count; i++)
+        for (int i = 0; i < quest.NeededSkills.Count; i++)
         {
-            var skillEntityToUpdate = await _skillsDatabase.GetSkillByIdAsync(questModel.NeededSkills[i].Id);
+            var skillEntityToUpdate = await _skillsDatabase.GetSkillByIdAsync(quest.NeededSkills[i].Id);
             var skillModelToUpdate = skillEntityToUpdate.ToModel();
-            skillModelToUpdate.Exp += ExpForDifficulty.DifficultyForExpMap[questModel.Difficulty[i]];
+            skillModelToUpdate.Exp += ExpForDifficulty.DifficultyForExpMap[quest.Difficulty[i]];
             skillModelToUpdate.Level = ExpSystem.GetLevelFromExp(skillModelToUpdate.Exp);
             await _skillsDatabase.SaveSkillAsync(skillModelToUpdate.ToEntity());
         }
 
-        await _questDatabase.DeleteQuestAsync(questModel.ToEntity());
+        await _questDatabase.DeleteQuestAsync(quest.ToEntity());
     }
 }

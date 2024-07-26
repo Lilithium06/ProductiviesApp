@@ -1,7 +1,7 @@
 ﻿using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
@@ -30,7 +30,7 @@ public class SkillCreationViewModel : ViewModelBase
 
     private async Task<int> SaveSkill()
     {
-        var skillToSave = new SkillModel()
+        var skillToSave = new Skill()
         {
             Id = Guid.Empty,
             Name = Name,

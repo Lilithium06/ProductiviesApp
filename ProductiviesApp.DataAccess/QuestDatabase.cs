@@ -32,7 +32,7 @@ public class QuestDatabase
 
         foreach (var quest in quests)
         {
-            quest.NeededSkills = new List<SkillEntity>();
+            quest.NeededSkills = [];
             var questSkillEntities = await Database.Table<QuestSkillEntity>()
                 .Where(qs => qs.QuestId == quest.Id)
                 .ToListAsync();

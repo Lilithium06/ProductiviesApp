@@ -1,7 +1,7 @@
 ﻿using ProductiviesApp.Commands;
 using ProductiviesApp.DataAccess;
 using ProductiviesApp.Mappers;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -13,7 +13,7 @@ public class QuestCreationViewModel : ViewModelBase
     {
         SaveCommand = new Command(async () => await SaveQuest());
         AddSkillCommand = new Command(AddSkill);
-        RemoveSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
+        RemoveSkillCommand = new Command<SkillDifficulty>(RemoveSkill);
         GoToLastPageCommand = new GoToPageCommand("..");
 
         new Thread(async () => await Initialize()).Start();
@@ -38,8 +38,8 @@ public class QuestCreationViewModel : ViewModelBase
         set => SetProperty(ref _details, value);
     }
 
-    public ObservableCollection<SkillDifficultyModel> AvailableSkillDifficulties { get; } = [];
-    public ObservableCollection<SkillModel> AllSkills { get; } = [];
+    public ObservableCollection<SkillDifficulty> AvailableSkillDifficulties { get; } = [];
+    public ObservableCollection<Skill> AllSkills { get; } = [];
     public ObservableCollection<Difficulty> AllDifficulties { get; } = [];
 
     public ICommand SaveCommand { get; }
@@ -49,12 +49,12 @@ public class QuestCreationViewModel : ViewModelBase
 
     private async Task<int> SaveQuest()
     {
-        var questToSave = new QuestModel()
+        var questToSave = new Quest()
         {
             Id = Guid.Empty,
             Name = Name,
             Details = Details,
-            NeededSkills = new List<SkillModel>(AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
+            NeededSkills = new List<Skill>(AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
             Difficulty = new List<Difficulty>(AvailableSkillDifficulties.Select(sd => sd.Difficulty))
         };
 
@@ -73,7 +73,7 @@ public class QuestCreationViewModel : ViewModelBase
 
         var skillDifficulties = AllSkills.Select(s =>
         {
-            return new SkillDifficultyModel
+            return new SkillDifficulty
             {
                 SkillModel = s,
                 Difficulty = AllDifficulties.First()
@@ -85,7 +85,7 @@ public class QuestCreationViewModel : ViewModelBase
 
     private void AddSkill()
     {
-        var newSkillDifficulty = new SkillDifficultyModel
+        var newSkillDifficulty = new SkillDifficulty
         {
             SkillModel = AllSkills.First(),
             Difficulty = Difficulty.VeryEasy
@@ -93,7 +93,7 @@ public class QuestCreationViewModel : ViewModelBase
         AvailableSkillDifficulties.Add(newSkillDifficulty);
     }
 
-    private void RemoveSkill(SkillDifficultyModel skillDifficulty)
+    private void RemoveSkill(SkillDifficulty skillDifficulty)
     {
         AvailableSkillDifficulties.Remove(skillDifficulty);
     }

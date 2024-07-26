@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:ProductiviesApp.ViewModels"
-             xmlns:models="clr-namespace:ProductiviesApp.Models"
+             xmlns:model="clr-namespace:ProductiviesApp.Model"
              x:Class="ProductiviesApp.Views.SkillsListPage"
              x:DataType="viewModels:SkillListViewModel">
     <ContentPage.BindingContext>
@@ -16,9 +16,9 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" FontSize="Large" />
-                            <Label Text="{Binding Level, Source={RelativeSource AncestorType={x:Type models:SkillModel}}, StringFormat='Lv. {0}'}" FontSize="Medium" />
-                            <Label Text="{Binding Exp, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" FontSize="Medium" />
+                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type model:Skill}}}" FontSize="Large" />
+                            <Label Text="{Binding Level, Source={RelativeSource AncestorType={x:Type model:Skill}}, StringFormat='Lv. {0}'}" FontSize="Medium" />
+                            <Label Text="{Binding Exp, Source={RelativeSource AncestorType={x:Type model:Skill}}}" FontSize="Medium" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

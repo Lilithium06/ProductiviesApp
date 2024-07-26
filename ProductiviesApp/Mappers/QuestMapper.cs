@@ -1,13 +1,13 @@
 ﻿using ProductiviesApp.DataAccess.Entities;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 
 namespace ProductiviesApp.Mappers;
 
 public static class QuestMapper
 {
-    public static QuestModel ToModel(this QuestEntity entity)
+    public static Quest ToModel(this QuestEntity entity)
     {
-        var returnModel = new QuestModel
+        return new Quest
         {
             Id = entity.Id,
             Name = entity.Name,
@@ -15,21 +15,19 @@ public static class QuestMapper
             Difficulty = entity.Difficulty.StringToDifficulties(),
 
             NeededSkills = entity.NeededSkills is null ? ([]) :
-            new List<SkillModel>(entity.NeededSkills.Select(s => s.ToModel()))
+            new List<Skill>(entity.NeededSkills.Select(s => s.ToModel()))
         };
-
-        return returnModel;
     }
 
-    public static QuestEntity ToEntity(this QuestModel model)
+    public static QuestEntity ToEntity(this Quest quest)
     {
         return new QuestEntity()
         {
-            Id = model.Id,
-            Name = model.Name,
-            Details = model.Details,
-            Difficulty = model.Difficulty.DifficultiesToString(),
-            NeededSkills = model.NeededSkills.Select(s => s.ToEntity()).ToList()
+            Id = quest.Id,
+            Name = quest.Name,
+            Details = quest.Details,
+            Difficulty = quest.Difficulty.DifficultiesToString(),
+            NeededSkills = quest.NeededSkills.ConvertAll(s => s.ToEntity())
         };
     }
 
