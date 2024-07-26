@@ -11,8 +11,6 @@ public class QuestCreationViewModel : ViewModelBase
 {
     public QuestCreationViewModel()
     {
-        _questDatabase = new();
-        _skillsDatabase = new();
         SaveCommand = new Command(async () => await SaveQuest());
         AddSkillCommand = new Command(AddSkill);
         RemoveSkillCommand = new Command<SkillDifficultyModel>(RemoveSkill);
@@ -21,8 +19,8 @@ public class QuestCreationViewModel : ViewModelBase
         new Thread(async () => await Initialize()).Start();
     }
 
-    private readonly QuestDatabase _questDatabase;
-    private readonly SkillsDatabase _skillsDatabase;
+    private readonly QuestDatabase _questDatabase = new();
+    private readonly SkillsDatabase _skillsDatabase = new();
 
     private string _name = string.Empty;
 

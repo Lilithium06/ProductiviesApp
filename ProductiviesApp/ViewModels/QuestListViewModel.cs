@@ -13,16 +13,14 @@ public class QuestListViewModel : ViewModelBase
 {
     public QuestListViewModel()
     {
-        _questDatabase = new();
-        _skillsDatabase = new();
         new Thread(async () => await InitializeAsync()).Start();
 
         GoToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
         CompleteQuestCommand = new Command<QuestModel>(async (questModel) => await CompleteQuest(questModel));
     }
 
-    private readonly QuestDatabase _questDatabase;
-    private readonly SkillsDatabase _skillsDatabase;
+    private readonly QuestDatabase _questDatabase = new();
+    private readonly SkillsDatabase _skillsDatabase = new();
 
     public ObservableCollection<QuestModel> AllQuests { get; } = [];
 
