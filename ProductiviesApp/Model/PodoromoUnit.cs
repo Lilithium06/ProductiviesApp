@@ -1,6 +1,6 @@
 ﻿namespace ProductiviesApp.Model;
 
-public class PodoromoUnitModel
+public class PodoromoUnit
 {
     public int Parts { get; set; }
     public int CompletedParts { get; set; }
