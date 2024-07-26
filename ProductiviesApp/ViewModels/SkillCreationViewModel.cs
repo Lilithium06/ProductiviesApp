@@ -10,12 +10,11 @@ public class SkillCreationViewModel : ViewModelBase
 {
     public SkillCreationViewModel()
     {
-        _skillsDatabase = new();
-        _saveCommand = new Command(async () => await SaveSkill());
-        _goToLastPageCommand = new GoToPageCommand("..");
+        SaveCommand = new Command(async () => await SaveSkill());
+        GoToLastPageCommand = new GoToPageCommand("..");
     }
 
-    private readonly SkillsDatabase _skillsDatabase;
+    private readonly SkillsDatabase _skillsDatabase = new();
 
     private string _name = string.Empty;
 
@@ -25,21 +24,9 @@ public class SkillCreationViewModel : ViewModelBase
         set => SetProperty(ref _name, value);
     }
 
-    private ICommand _saveCommand;
+    public ICommand SaveCommand { get; }
 
-    public ICommand SaveCommand
-    {
-        get => _saveCommand;
-        set => SetProperty(ref _saveCommand, value);
-    }
-
-    private ICommand _goToLastPageCommand;
-
-    public ICommand GoToLastPageCommand
-    {
-        get => _goToLastPageCommand;
-        set => SetProperty(ref _goToLastPageCommand, value);
-    }
+    public ICommand GoToLastPageCommand { get; }
 
     private async Task<int> SaveSkill()
     {

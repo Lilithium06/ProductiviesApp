@@ -17,44 +17,27 @@ public class QuestListViewModel : ViewModelBase
         _skillsDatabase = new();
         new Thread(async () => await InitializeAsync()).Start();
 
-        _goToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
-        _completeQuestCommand = new Command<QuestModel>(async (questModel) => await CompleteQuest(questModel));
+        GoToQuestCreationPageCommand = new GoToPageCommand($"{nameof(QuestCreationPage)}?param1={new QuestCreationViewModel()}");
+        CompleteQuestCommand = new Command<QuestModel>(async (questModel) => await CompleteQuest(questModel));
     }
 
     private readonly QuestDatabase _questDatabase;
     private readonly SkillsDatabase _skillsDatabase;
 
-    private ObservableCollection<QuestModel> _allQuests = [];
+    public ObservableCollection<QuestModel> AllQuests { get; } = [];
 
-    public ObservableCollection<QuestModel> AllQuests
-    {
-        get => _allQuests;
-        set => SetProperty(ref _allQuests, value);
-    }
-
-    private ICommand _goToQuestCreationPageCommand;
-
-    public ICommand GoToQuestCreationPageCommand
-    {
-        get => _goToQuestCreationPageCommand;
-        set => SetProperty(ref _goToQuestCreationPageCommand, value);
-    }
-
-    private ICommand _completeQuestCommand;
-
-    public ICommand CompleteQuestCommand
-    {
-        get => _completeQuestCommand;
-        set => SetProperty(ref _completeQuestCommand, value);
-    }
+    public ICommand GoToQuestCreationPageCommand { get; }
+    public ICommand CompleteQuestCommand { get; }
 
     public async Task InitializeAsync()
     {
         var quests = await _questDatabase.GetQuestAsync();
 
-        AllQuests = new ObservableCollection<QuestModel>(quests.Select(s => s.ToModel()));
-
-        Console.WriteLine();
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            foreach (var item in quests.Select(s => s.ToModel()))
+                AllQuests.Add(item);
+        });
     }
 
     private async Task CompleteQuest(QuestModel questModel)
