@@ -103,8 +103,8 @@ public class QuestCreationViewModel : ViewModelBase
             Id = Guid.Empty,
             Name = Name,
             Details = Details,
-            NeededSkills = new ObservableCollection<SkillModel>(AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
-            Difficulty = new ObservableCollection<Difficulty>(AvailableSkillDifficulties.Select(sd => sd.Difficulty))
+            NeededSkills = new List<SkillModel>(AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
+            Difficulty = new List<Difficulty>(AvailableSkillDifficulties.Select(sd => sd.Difficulty))
         };
 
         GoToLastPageCommand.Execute(null);

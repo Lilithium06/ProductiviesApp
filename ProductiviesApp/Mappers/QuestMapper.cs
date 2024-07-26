@@ -1,6 +1,5 @@
 ﻿using ProductiviesApp.DataAccess.Entities;
 using ProductiviesApp.Models;
-using System.Collections.ObjectModel;
 
 namespace ProductiviesApp.Mappers;
 
@@ -16,7 +15,7 @@ public static class QuestMapper
             Difficulty = entity.Difficulty.StringToDifficulties(),
 
             NeededSkills = entity.NeededSkills is null ? ([]) :
-            new ObservableCollection<SkillModel>(entity.NeededSkills.Select(s => s.ToModel()))
+            new List<SkillModel>(entity.NeededSkills.Select(s => s.ToModel()))
         };
 
         return returnModel;
@@ -34,10 +33,10 @@ public static class QuestMapper
         };
     }
 
-    private static string DifficultiesToString(this ObservableCollection<Difficulty> difficulties)
+    private static string DifficultiesToString(this List<Difficulty> difficulties)
         => string.Join(' ', difficulties.Select(d => d.ToString()));
 
-    private static ObservableCollection<Difficulty> StringToDifficulties(this string difficultiesString)
+    private static List<Difficulty> StringToDifficulties(this string difficultiesString)
         => new(difficultiesString.Split(' ')
             .Select(d => Enum.TryParse(typeof(Difficulty), d, out object? result) ? (Difficulty)result : Difficulty.VeryEasy));
 }
