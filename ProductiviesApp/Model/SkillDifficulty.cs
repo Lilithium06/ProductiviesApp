@@ -2,6 +2,6 @@
 
 public class SkillDifficulty
 {
-    public Skill SkillModel { get; set; } = new();
+    public Skill Skill { get; set; } = new();
     public Difficulty Difficulty { get; set; }
 }
