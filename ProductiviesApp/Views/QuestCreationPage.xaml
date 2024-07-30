@@ -7,7 +7,7 @@
              x:Class="ProductiviesApp.Views.QuestCreationPage"
              x:DataType="viewModels:QuestCreationViewModel">
     <ContentPage.BindingContext>
-        <viewModels:QuestCreationViewModel></viewModels:QuestCreationViewModel>
+        <viewModels:QuestCreationViewModel />
     </ContentPage.BindingContext>
 
     <Grid>
@@ -21,15 +21,15 @@
             <Label Text="Skills:" />
             <ListView ItemsSource="{Binding AvailableSkillDifficulties}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:SkillDifficultyModel">
+                    <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Picker ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestCreationViewModel}}, Path=AllSkills}"
-                                        SelectedItem="{Binding SkillModel}"
+                                        SelectedItem="{Binding SkillModel, Source={RelativeSource AncestorType={x:Type models:SkillDifficultyModel}}}"
                                         ItemDisplayBinding="{Binding Name}"
                                         WidthRequest="200" />
                                 <Picker ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestCreationViewModel}}, Path=AllDifficulties}"
-                                        SelectedItem="{Binding Difficulty}"
+                                        SelectedItem="{Binding Difficulty,  Source={RelativeSource AncestorType={x:Type models:SkillDifficultyModel}}}"
                                         WidthRequest="200" />
                                 <Button Text="Remove" Command="{Binding Path=BindingContext.RemoveSkillCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" />
                             </StackLayout>

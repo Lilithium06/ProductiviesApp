@@ -6,7 +6,7 @@
              x:Class="ProductiviesApp.Views.SkillCreationPage"
              x:DataType="viewModels:SkillCreationViewModel">
     <ContentPage.BindingContext>
-        <viewModels:SkillCreationViewModel></viewModels:SkillCreationViewModel>
+        <viewModels:SkillCreationViewModel />
     </ContentPage.BindingContext>
 
     <Grid>

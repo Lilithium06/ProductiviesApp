@@ -7,18 +7,18 @@
              x:Class="ProductiviesApp.Views.QuestListPage"
              x:DataType="viewModels:QuestListViewModel">
     <ContentPage.BindingContext>
-        <viewModels:QuestListViewModel></viewModels:QuestListViewModel>
+        <viewModels:QuestListViewModel />
     </ContentPage.BindingContext>
 
     <Grid>
         <ListView RowHeight="200" ItemsSource="{Binding AllQuests}">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:QuestModel">
+                <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Name}" FontSize="Large" />
-                            <Label Text="{Binding Details}" FontSize="Medium" />
-                            <Label Text="{Binding NeededSkills.Count}" FontSize="Medium" />
+                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" FontSize="Large" />
+                            <Label Text="{Binding Details, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" FontSize="Medium" />
+                            <Label Text="{Binding NeededSkills.Count, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" FontSize="Medium" />
                             <Button Text="Complete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestListViewModel}}, Path=CompleteQuestCommand}" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </ViewCell>
