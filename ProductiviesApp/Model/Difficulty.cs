@@ -1,4 +1,4 @@
-﻿namespace ProductiviesApp.Models;
+﻿namespace ProductiviesApp.Model;
 
 public enum Difficulty
 {

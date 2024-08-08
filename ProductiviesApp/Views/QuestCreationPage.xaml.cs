@@ -1,13 +1,6 @@
-﻿using ProductiviesApp.ViewModels;
-
-namespace ProductiviesApp.Views;
+﻿namespace ProductiviesApp.Views;
 
 public partial class QuestCreationPage : ContentPage
 {
-    public QuestCreationPage(QuestCreationViewModel viewModel)
-    {
-        InitializeComponent();
-
-        BindingContext = viewModel;
-    }
+    public QuestCreationPage() => InitializeComponent();
 }
