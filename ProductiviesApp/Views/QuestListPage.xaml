@@ -5,7 +5,8 @@
              xmlns:viewModels="clr-namespace:ProductiviesApp.ViewModels"
              xmlns:models="clr-namespace:ProductiviesApp.Models"
              x:Class="ProductiviesApp.Views.QuestListPage"
-             x:DataType="viewModels:QuestListViewModel">
+             x:DataType="viewModels:QuestListViewModel"
+             BackgroundColor="{StaticResource Background}">
     <ContentPage.BindingContext>
         <viewModels:QuestListViewModel />
     </ContentPage.BindingContext>
@@ -15,10 +16,13 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" FontSize="Large" />
-                            <Label Text="{Binding Details, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" FontSize="Medium" />
-                            <Label Text="{Binding NeededSkills.Count, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" FontSize="Medium" />
+                        <StackLayout Background="{StaticResource Surface}" Padding="5">
+                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" 
+                                   FontSize="Large" TextColor="{StaticResource Text}"/>
+                            <Label Text="{Binding Details, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" 
+                                   FontSize="Large" TextColor="{StaticResource Text}"/>
+                            <Label Text="{Binding NeededSkills.Count, Source={RelativeSource AncestorType={x:Type models:QuestModel}}}" 
+                                   FontSize="Medium" TextColor="{StaticResource TextSecondary}"/>
                             <Button Text="Complete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestListViewModel}}, Path=CompleteQuestCommand}" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </ViewCell>

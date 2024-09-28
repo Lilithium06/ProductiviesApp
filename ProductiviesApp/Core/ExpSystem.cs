@@ -26,4 +26,16 @@ public static class ExpSystem
 
         return 0;
     }
-}
+
+    public static int GetExpFromLevel(int level)
+    {
+        var returnExp = 0;
+        
+        for (int i = 1; i <= level; i++)
+        {
+            returnExp += (int)(_baseExp * Math.Pow(_growthRate, i - 1));
+        }
+
+        return returnExp;
+    }
+} 
