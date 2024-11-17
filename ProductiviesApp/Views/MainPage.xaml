@@ -11,14 +11,6 @@
     </ContentPage.BindingContext>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Label FontSize="50"
-            Text="{Binding Timer, StringFormat='{0:mm\\:ss}'}" />
-        <Button Grid.Row="1" Text="Test Button" Command="{Binding StartTimer}" />
+        
     </Grid>
 </ContentPage>

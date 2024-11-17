@@ -62,7 +62,6 @@ namespace ProductiviesApp
 
         private static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
         {
-            _ = mauiAppBuilder.Services.AddTransient<PodoromoUnit>();
             _ = mauiAppBuilder.Services.AddTransient<Quest>();
             _ = mauiAppBuilder.Services.AddTransient<Skill>();
 

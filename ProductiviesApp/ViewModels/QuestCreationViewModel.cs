@@ -54,7 +54,7 @@ public class QuestCreationViewModel : ViewModelBase
             Id = Guid.Empty,
             Name = Name,
             Details = Details,
-            NeededSkills = new List<Skill>(AvailableSkillDifficulties.Select(sd => sd.SkillModel)),
+            NeededSkills = new List<Skill>(AvailableSkillDifficulties.Select(sd => sd.Skill)),
             Difficulty = new List<Difficulty>(AvailableSkillDifficulties.Select(sd => sd.Difficulty))
         };
 
@@ -75,7 +75,7 @@ public class QuestCreationViewModel : ViewModelBase
         {
             return new SkillDifficulty
             {
-                SkillModel = s,
+                Skill = s,
                 Difficulty = AllDifficulties.First()
             };
         });
@@ -87,7 +87,7 @@ public class QuestCreationViewModel : ViewModelBase
     {
         var newSkillDifficulty = new SkillDifficulty
         {
-            SkillModel = AllSkills.First(),
+            Skill = AllSkills.First(),
             Difficulty = Difficulty.VeryEasy
         };
         AvailableSkillDifficulties.Add(newSkillDifficulty);
