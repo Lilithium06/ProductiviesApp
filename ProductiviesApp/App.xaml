@@ -5,13 +5,13 @@
              x:Class="ProductiviesApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#00FF00</Color>
-            <Color x:Key="Secondary">#0000FF</Color>
-            <Color x:Key="Accent">#FF0000</Color>
-            <Color x:Key="Background">#000000</Color>
-            <Color x:Key="Surface">#444444</Color>
-            <Color x:Key="Text">#FFFFFF</Color>
-            <Color x:Key="TextSecondary">#CCCCCC</Color>
+            <Color x:Key="Primary">#fe6c67</Color>
+            <Color x:Key="Secondary">#01a03a</Color>
+            <Color x:Key="Accent">#29f4fe</Color>
+            <Color x:Key="Background">#130600</Color>
+            <Color x:Key="Surface">#1d0e0d</Color>
+            <Color x:Key="Text">#ffe1df</Color>
+            <Color x:Key="TextSecondary">#877265</Color>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

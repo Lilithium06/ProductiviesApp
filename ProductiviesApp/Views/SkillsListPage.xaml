@@ -15,6 +15,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
+<<<<<<< Updated upstream
+                        <StackLayout>
+                            <Label Text="{Binding Name, Source={RelativeSource AncestorType={x:Type model:Skill}}}" FontSize="Large" />
+                            <Label Text="{Binding Level, Source={RelativeSource AncestorType={x:Type model:Skill}}, StringFormat='Lv. {0}'}" FontSize="Medium" />
+                            <Label Text="{Binding Exp, Source={RelativeSource AncestorType={x:Type model:Skill}}}" FontSize="Medium" />
+=======
                         <StackLayout BackgroundColor="{StaticResource Surface}" Padding="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -22,15 +28,22 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" 
-                                       Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:SkillModel}}, StringFormat='Level: {0}'}" 
+                                       Text="{Binding Name, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" 
                                        FontSize="Large" TextColor="{StaticResource Text}"/>
                                 <Label Grid.Column="1" 
-                                       Text="{Binding Level, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" 
+                                       Text="{Binding Level, Source={RelativeSource AncestorType={x:Type models:SkillModel}}, StringFormat='Level: {0}'}" 
                                        FontSize="Large" TextColor="{StaticResource Text}" HorizontalTextAlignment="End"/>
                             </Grid>
-                            <Label Text="{Binding Exp, Source={RelativeSource AncestorType={x:Type models:SkillModel}}}" 
-                                   FontSize="Medium" TextColor="{StaticResource TextSecondary}"/>
+                            <Label FontSize="Medium" TextColor="{StaticResource TextSecondary}" HorizontalTextAlignment="End">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0} / {1}">
+                                        <Binding Path="Exp" Source="{RelativeSource AncestorType={x:Type models:SkillModel}}" />
+                                        <Binding Path="ExpForNextLevel" Source="{RelativeSource AncestorType={x:Type models:SkillModel}}" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                             <ProgressBar Progress="0.5" ProgressColor="{StaticResource Primary}"/>
+>>>>>>> Stashed changes
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

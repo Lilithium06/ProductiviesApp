@@ -37,6 +37,14 @@ public class SkillModel : ViewModelBase
         set => SetProperty(ref _exp, value);
     }
 
+    private int _nextLevelExp;
+
+    public int NextLevelExp
+    {
+        get => _nextLevelExp;
+        set => SetProperty(ref _nextLevelExp, value);
+    }
+
     private ObservableCollection<QuestModel> _neededInQuests = [];
 
     public ObservableCollection<QuestModel> NeededInQuests
