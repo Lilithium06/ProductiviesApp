@@ -1,14 +1,13 @@
 ﻿using ProductiviesApp.DataAccess.Entities;
-using ProductiviesApp.Models;
-using System.Collections.ObjectModel;
+using ProductiviesApp.Model;
 
 namespace ProductiviesApp.Mappers;
 
 public static class QuestMapper
 {
-    public static QuestModel ToModel(this QuestEntity entity)
+    public static Quest ToModel(this QuestEntity entity)
     {
-        var returnModel = new QuestModel
+        return new Quest
         {
             Id = entity.Id,
             Name = entity.Name,
@@ -16,28 +15,26 @@ public static class QuestMapper
             Difficulty = entity.Difficulty.StringToDifficulties(),
 
             NeededSkills = entity.NeededSkills is null ? ([]) :
-            new ObservableCollection<SkillModel>(entity.NeededSkills.Select(s => s.ToModel()))
+            new List<Skill>(entity.NeededSkills.Select(s => s.ToModel()))
         };
-
-        return returnModel;
     }
 
-    public static QuestEntity ToEntity(this QuestModel model)
+    public static QuestEntity ToEntity(this Quest quest)
     {
         return new QuestEntity()
         {
-            Id = model.Id,
-            Name = model.Name,
-            Details = model.Details,
-            Difficulty = model.Difficulty.DifficultiesToString(),
-            NeededSkills = model.NeededSkills.Select(s => s.ToEntity()).ToList()
+            Id = quest.Id,
+            Name = quest.Name,
+            Details = quest.Details,
+            Difficulty = quest.Difficulty.DifficultiesToString(),
+            NeededSkills = quest.NeededSkills.ConvertAll(s => s.ToEntity())
         };
     }
 
-    private static string DifficultiesToString(this ObservableCollection<Difficulty> difficulties)
+    private static string DifficultiesToString(this List<Difficulty> difficulties)
         => string.Join(' ', difficulties.Select(d => d.ToString()));
 
-    private static ObservableCollection<Difficulty> StringToDifficulties(this string difficultiesString)
+    private static List<Difficulty> StringToDifficulties(this string difficultiesString)
         => new(difficultiesString.Split(' ')
             .Select(d => Enum.TryParse(typeof(Difficulty), d, out object? result) ? (Difficulty)result : Difficulty.VeryEasy));
 }

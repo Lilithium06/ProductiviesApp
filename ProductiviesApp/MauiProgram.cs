@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ProductiviesApp.DataAccess;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 using ProductiviesApp.ViewModels;
 using ProductiviesApp.Views;
 
@@ -62,9 +62,9 @@ namespace ProductiviesApp
 
         private static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
         {
-            _ = mauiAppBuilder.Services.AddTransient<PodoromoUnitModel>();
-            _ = mauiAppBuilder.Services.AddTransient<QuestModel>();
-            _ = mauiAppBuilder.Services.AddTransient<SkillModel>();
+            _ = mauiAppBuilder.Services.AddTransient<PodoromoUnit>();
+            _ = mauiAppBuilder.Services.AddTransient<Quest>();
+            _ = mauiAppBuilder.Services.AddTransient<Skill>();
 
             return mauiAppBuilder;
         }

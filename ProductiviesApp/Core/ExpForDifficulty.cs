@@ -1,4 +1,4 @@
-﻿using ProductiviesApp.Models;
+﻿using ProductiviesApp.Model;
 
 namespace ProductiviesApp.Core;
 

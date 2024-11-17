@@ -1,4 +1,4 @@
-﻿using ProductiviesApp.Models;
+﻿using ProductiviesApp.Model;
 using System.Windows.Input;
 
 namespace ProductiviesApp.ViewModels;
@@ -7,46 +7,38 @@ public class MainPageViewModel : ViewModelBase
 {
     public MainPageViewModel()
     {
-        _podoromoUnitModel = new PodoromoUnitModel()
-        {
-            Timer = new DateTime(1, 1, 1, 0, 0, 12)
-        };
-        _timer = Application.Current?.Dispatcher.CreateTimer() ?? throw new ArgumentNullException();
+        _dispatcherTimer = Application.Current?.Dispatcher.CreateTimer() ?? throw new ArgumentNullException();
 
-        _startTimer = new Command(() =>
+        StartTimer = new Command(() =>
         {
-            _timer.Tick += RemoveOneSecond;
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Start();
+            _dispatcherTimer.Tick += RemoveOneSecond;
+            _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            _dispatcherTimer.Start();
         });
     }
 
-    private PodoromoUnitModel _podoromoUnitModel;
+    public readonly PodoromoUnit PodoromoUnit = new();
 
-    public PodoromoUnitModel PodoromoUnitModel
+    public ICommand StartTimer { get; }
+
+    private readonly IDispatcherTimer _dispatcherTimer;
+
+    private DateTime _timer = new(1, 1, 1, 0, 0, 12);
+
+    public DateTime Timer
     {
-        get => _podoromoUnitModel;
-        set => SetProperty(ref _podoromoUnitModel, value);
+        get { return _timer; }
+        set { SetProperty(ref _timer, value); }
     }
-
-    private ICommand _startTimer;
-
-    public ICommand StartTimer
-    {
-        get => _startTimer;
-        set => SetProperty(ref _startTimer, value);
-    }
-
-    private readonly IDispatcherTimer _timer;
 
     private void RemoveOneSecond(object? o, EventArgs e)
     {
-        if (PodoromoUnitModel.Timer.Minute == 0 && PodoromoUnitModel.Timer.Second == 0)
+        if (Timer.Minute == 0 && Timer.Second == 0)
         {
-            _timer.Stop();
-            PodoromoUnitModel.CompletedParts++;
+            _dispatcherTimer.Stop();
+            PodoromoUnit.CompletedParts++;
 
-            if (PodoromoUnitModel.Parts == PodoromoUnitModel.CompletedParts)
+            if (PodoromoUnit.Parts == PodoromoUnit.CompletedParts)
             {
                 //Do stuff that gives extra exp
             }
@@ -54,6 +46,6 @@ public class MainPageViewModel : ViewModelBase
             return;
         }
 
-        PodoromoUnitModel.Timer = PodoromoUnitModel.Timer.AddSeconds(-1);
+        Timer = Timer.AddSeconds(-1);
     }
 }

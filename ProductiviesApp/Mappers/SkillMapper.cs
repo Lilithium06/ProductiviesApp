@@ -1,13 +1,13 @@
 ﻿using ProductiviesApp.DataAccess.Entities;
-using ProductiviesApp.Models;
+using ProductiviesApp.Model;
 
 namespace ProductiviesApp.Mappers;
 
 public static class SkillMapper
 {
-    public static SkillModel ToModel(this SkillEntity entity)
+    public static Skill ToModel(this SkillEntity entity)
     {
-        return new SkillModel()
+        return new Skill()
         {
             Id = entity.Id,
             Exp = entity.Exp,
@@ -16,14 +16,14 @@ public static class SkillMapper
         };
     }
 
-    public static SkillEntity ToEntity(this SkillModel model)
+    public static SkillEntity ToEntity(this Skill skill)
     {
         return new SkillEntity()
         {
-            Id = model.Id,
-            Exp = model.Exp,
-            Level = model.Level,
-            Name = model.Name
+            Id = skill.Id,
+            Exp = skill.Exp,
+            Level = skill.Level,
+            Name = skill.Name
         };
     }
 }
